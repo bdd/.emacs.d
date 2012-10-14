@@ -1,0 +1,33 @@
+[submodule "lisp/expand-region"]
+	path = lisp/expand-region
+	url = https://github.com/magnars/expand-region.el.git
+[submodule "lisp/gist"]
+	path = lisp/gist
+	url = https://github.com/defunkt/gist.el.git
+[submodule "lisp/magit"]
+	path = lisp/magit
+	url = https://github.com/magit/magit.git
+[submodule "lisp/use-package"]
+	path = lisp/use-package
+	url = https://github.com/jwiegley/use-package.git
+[submodule "themes/solarized"]
+	path = themes/solarized
+	url = https://github.com/sellout/emacs-color-theme-solarized.git
+[submodule "themes/zenburn"]
+	path = themes/zenburn
+	url = https://github.com/bbatsov/zenburn-emacs.git
+[submodule "lisp/regex-tool"]
+	path = lisp/regex-tool
+	url = https://github.com/jwiegley/regex-tool.git
+[submodule "lisp/erc"]
+	path = lisp/erc
+	url = http://git.savannah.gnu.org/r/erc.git
+[submodule "lisp/color-theme-buffer-local"]
+	path = lisp/color-theme-buffer-local
+	url = https://github.com/vic/color-theme-buffer-local.git
+[submodule "lisp/markdown-mode"]
+	path = lisp/markdown-mode
+	url = http://jblevins.org/git/markdown-mode.git
+[submodule "lisp/multiple-cursors.el"]
+	path = lisp/multiple-cursors.el
+	url = https://github.com/magnars/multiple-cursors.el.git
