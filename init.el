@@ -167,10 +167,6 @@
 ;;; (git submodule)
 (use-package regex-tool)
 
-;;; erc: emacs irc client
-;;; (git submodule)
-(use-package erc)
-
 ;;; color-theme-buffer-local & load-theme-buffer-local
 ;;; load-theme-buffer-local: Per buffer color themes for Emacs 24.
 ;;; (git submodule)

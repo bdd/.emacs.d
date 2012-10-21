@@ -19,9 +19,6 @@
 [submodule "lisp/regex-tool"]
 	path = lisp/regex-tool
 	url = https://github.com/jwiegley/regex-tool.git
-[submodule "lisp/erc"]
-	path = lisp/erc
-	url = http://git.savannah.gnu.org/r/erc.git
 [submodule "lisp/color-theme-buffer-local"]
 	path = lisp/color-theme-buffer-local
 	url = https://github.com/vic/color-theme-buffer-local.git
