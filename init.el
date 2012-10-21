@@ -68,19 +68,8 @@
 
 ;;; Window Movement
 (bind-key "C-<return>" 'other-window)
-;; Switch with arrows.
-;; - Graphical: Command-<arrow key>
-;; - Terminal : C-c <arrow key>
-(let
-    ((prefix (if window-system "s-" "C-c ")))
-  (defun with-prefix (key)
-    (concat prefix "<" key ">"))
-
-  (bind-key (with-prefix "left") 'windmove-left)
-  (bind-key (with-prefix "right") 'windmove-right)
-  (bind-key (with-prefix "up") 'windmove-up)
-  (bind-key (with-prefix "down") 'windmove-down))
-
+(windmove-default-keybindings) ; default modifier key is 'shift.
+(setq windmove-wrap-around t)  ;---??? not sure if I really want this.
 
 ;;;; Misc
 ;;; Whitespace
