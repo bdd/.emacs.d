@@ -25,6 +25,6 @@
 [submodule "lisp/markdown-mode"]
 	path = lisp/markdown-mode
 	url = http://jblevins.org/git/markdown-mode.git
-[submodule "lisp/multiple-cursors.el"]
-	path = lisp/multiple-cursors.el
+[submodule "lisp/multiple-cursors"]
+	path = lisp/multiple-cursors
 	url = https://github.com/magnars/multiple-cursors.el.git
