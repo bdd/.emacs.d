@@ -165,18 +165,15 @@
 ;;; (git submodule)
 (use-package markdown-mode
   :mode ("\\.\\(markdown\\|mdown\\|md\\)$" . markdown-mode)
-  :init
-  (progn
-    (defun prefer-markdown-command (command)
-      (when (executable-find command)
-	(setq markdown-command command))))
-
   :config
   (progn
-    (prefer-markdown-command "peg-markdown")
+    (let ((preferred-markdown-impl "peg-markdown"))
+      (when (executable-find preferred-markdown-impl)
+        (setq markdown-command preferred-markdown-impl)))
+
     (add-hook 'markdown-mode-hook
-	      #'(lambda ()
-		  (auto-fill-mode 1)))))
+              #'(lambda ()
+                  (auto-fill-mode 1)))))
 
 ;;; multiple-cursors
 ;;; (git submodule)
