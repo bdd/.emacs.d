@@ -79,7 +79,7 @@
 (setq whitespace-line-column nil) ; equals to fill-column
 ;(global-whitespace-mode t)
 
-(setq indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil)
 (setq tab-always-indent 'complete)
 (show-paren-mode t)
 (global-auto-revert-mode t)
