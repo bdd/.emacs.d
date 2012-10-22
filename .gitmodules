@@ -12,7 +12,7 @@
 	url = https://github.com/jwiegley/use-package.git
 [submodule "themes/solarized"]
 	path = themes/solarized
-	url = https://github.com/sellout/emacs-color-theme-solarized.git
+	url = https://github.com/bbatsov/solarized-emacs.git
 [submodule "themes/zenburn"]
 	path = themes/zenburn
 	url = https://github.com/bbatsov/zenburn-emacs.git
