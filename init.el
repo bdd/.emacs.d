@@ -73,8 +73,8 @@
 
 ;;;; Misc
 ;;; Whitespace
-(set-default 'indicate-empty-lines t)
-(set-default 'show-trailing-whitespace t)
+(setq-default indicate-empty-lines t)
+(setq-default show-trailing-whitespace t)
 (setq whitespace-style '(face empty tabs lines-tail tab-mark))
 (setq whitespace-line-column nil) ; equals to fill-column
 ;(global-whitespace-mode t)
