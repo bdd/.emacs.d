@@ -156,11 +156,6 @@
 ;;; (git submodule)
 (use-package regex-tool)
 
-;;; color-theme-buffer-local & load-theme-buffer-local
-;;; load-theme-buffer-local: Per buffer color themes for Emacs 24.
-;;; (git submodule)
-(use-package load-theme-buffer-local)
-
 ;;; markdown-mode
 ;;; (git submodule)
 (use-package markdown-mode
