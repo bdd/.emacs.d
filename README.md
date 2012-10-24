@@ -31,5 +31,5 @@ typing `M-x install-my-elpa-pkgs <RET>`
 All the packages and their dependencies will be downloaded.
 
 To keep the packages up-to-date, occasionally `list-packages` interactively and
-type `u` to mark the updated packages for installation and type `x` to execute
+type `U` to mark the updated packages for installation and type `x` to execute
 batch installation.
