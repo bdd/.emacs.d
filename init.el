@@ -99,29 +99,58 @@
       column-number-mode t)
 
 
-;;;; Package Declerations
+;;;; Packages
+(require 'cl)
+(require 'package)
+(setq package-enable-at-startup nil) ; do not initialize ELPA packages at startup.
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 
-;;; Magit: A magical emacs mode for git.
-;;; (git submodule)
-(use-package magit
-  :bind ("C-x g" . magit-status)
-  :config
-  (progn
-    (setenv "GIT_PAGER" "")
+(defun my-elpa-pkgs-installed-p ()
+  (loop for pkg in my-elpa-pkgs
+        when (not (package-installed-p pkg)) do (return nil)
+        finally (return t)))
 
-    (add-hook 'magit-log-edit-mode-hook
-              #'(lambda ()
-                  (set-fill-column 72)
-                  (auto-fill-mode)
-                  (flyspell-mode)))))
+(defun install-my-elpa-pkgs ()
+  (interactive)
+  (package-initialize)
+  (unless (my-elpa-pkgs-installed-p)
+    (message "%s" "Refreshing ELPA database...")
+    (package-refresh-contents)
+    (message "%s" " done.")
+    (dolist (pkg my-elpa-pkgs)
+      (when (not (package-installed-p pkg))
+        (package-install pkg)))))
 
-;;; scala
-;;; https://github.com/scala/scala-dist/tree/master/tool-support/src/emacs
-(use-package scala-mode
-  :mode ("\\.scala$" . scala-mode))
+(defvar my-elpa-pkgs
+  '(expand-region
+    gist
+    git-commit-mode
+    gitconfig-mode
+    gitignore-mode
+    go-mode
+    google-c-style
+    ido-ubiquitous
+    magit
+    markdown-mode
+    multiple-cursors
+    protobuf-mode
+    regex-tool
+    scala-mode
+    yasnippet
+    zenburn-theme))
 
-;;; go
-;;; http://go.googlecode.com/hg/misc/emacs/go-mode.el
+(use-package expand-region
+  :bind ("C-=" . er/expand-region))
+
+(use-package gist
+  :bind ("C-c G" . gist-region-or-buffer))
+
+(use-package git-commit-mode)
+
+(use-package gitignore-mode)
+
+(use-package gitconfig-mode)
+
 (use-package go-mode
   :mode ("\\.go$" . go-mode)
   :init
@@ -137,27 +166,22 @@
     (bind-key "C-c f" 'gofmt go-mode-map)
     (bind-key "C-c d" 'godoc go-mode-map)))
 
-;;; expand-region: increase the selected region by semantic units.
-;;; (git submodule)
-(use-package expand-region
-  :bind ("C-=" . er/expand-region))
+(use-package google-c-style)
 
-;;; protobuf: Google Protocol Buffers.
-;;; http://protobuf.googlecode.com/svn/trunk/editors/protobuf-mode.el
-(use-package protobuf-mode
-  :mode ("\\.proto$" . protobuf-mode))
+(use-package ido-ubiquitous)
 
-;;; gist: Create a GitHub Gist from region or buffer.
-;;; (git submodule)
-(use-package gist
-  :bind ("C-c G" . gist-region-or-buffer))
+(use-package magit
+  :bind ("C-x g" . magit-status)
+  :config
+  (progn
+    (setenv "GIT_PAGER" "")
 
-;;; regex-tool: regexp eval tool.
-;;; (git submodule)
-(use-package regex-tool)
+    (add-hook 'magit-log-edit-mode-hook
+              #'(lambda ()
+                  (set-fill-column 72)
+                  (auto-fill-mode)
+                  (flyspell-mode)))))
 
-;;; markdown-mode
-;;; (git submodule)
 (use-package markdown-mode
   :mode ("\\.\\(markdown\\|mdown\\|md\\)$" . markdown-mode)
   :config
@@ -170,14 +194,21 @@
               #'(lambda ()
                   (auto-fill-mode 1)))))
 
-;;; multiple-cursors
-;;; (git submodule)
 (use-package multiple-cursors
   :bind (("C-S-c C-S-c" . mc/edit-lines)
          ("C->" . mc/mark-next-like-this)
          ("C-<" . mc/mark-previous-like-this)
          ("C-c C-<" . mc/mark-all-like-this)))
 
+(use-package protobuf-mode
+  :mode ("\\.proto$" . protobuf-mode))
+
+(use-package regex-tool)
+
+(use-package scala-mode
+  :mode ("\\.scala$" . scala-mode))
+
+(use-package yasnippet)
 
 ;;;; Emacs Managed Customizations
 (setq custom-file (emacs-d "custom.el"))

@@ -6,6 +6,8 @@
   (expand-file-name "themes/" user-emacs-directory))
 (defconst site-theme-directory
   (expand-file-name "themes/" data-directory))
+(defconst elpa-package-directory
+  (expand-file-name "elpa/" user-emacs-directory))
 
 (defun add-to-load-path (path &optional dir)
   (setq load-path
@@ -18,6 +20,7 @@
 
 ;; load-path
 (dolist (dir (nreverse (list user-lisp-directory
+                             elpa-package-directory
                              user-theme-directory)))
   (dolist (entry (nreverse (directory-files-and-attributes dir)))
     (if (cadr entry)
