@@ -1,7 +1,7 @@
 ;;; load-path.el
 
 (defconst user-lisp-directory
-  (expand-file-name "lisp/" user-emacs-directory)
+  (expand-file-name "lisp/" user-emacs-directory))
 (defconst user-theme-directory
   (expand-file-name "themes/" user-emacs-directory))
 (defconst site-theme-directory
