@@ -12,24 +12,23 @@ Compiled from [Homebrew](http://mxcl.github.com/homebrew/):
         brew install emacs --cocoa --srgb
 
 If you don't use Homebrew or don't have the compiler chain you can download
-compiled version *(without the fullscreen patch)* from
+a compiled version *(without the fullscreen patch)* from
 [Emacs for Mac OS X](http://www.emacsformacosx.com).
 
 
 ## Installation ##
 
-Although the majority of third party packages are coming from ELPA or compatible
-package repositories, at least one critical extension, `use-package` is
-integrated as a git submodule.  Before launching Emacs with the new config,
-bring in all git submodules first.
+Most of the external packages are coming from ELPA and compatible repositories.
+A few packages, especially the most critical one `use-package` is sourced as a
+git submodule.  A post-install script is provided to take care of git submodule
+initialization (registration and clone) and then install all the specified
+packages from ELPA repositories.
 
-    git submodule update --init --recursive
+    ./post-install.els
 
-After you launch Emacs, run `install-my-elpa-pkgs` interactively.  Which means
-typing `M-x install-my-elpa-pkgs <RET>`
 
-All the packages and their dependencies will be downloaded.
+## Staying up-to-date ##
 
-To keep the packages up-to-date, occasionally `list-packages` interactively and
-type `U` to mark the updated packages for installation and type `x` to execute
+Occasionally invoke `list-packages` interactively.
+Type `U` to mark the updated packages for installation and type `x` to execute
 batch installation.

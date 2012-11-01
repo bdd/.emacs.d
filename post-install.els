@@ -1,0 +1,8 @@
+#!/usr/bin/env emacs --script
+
+(message "Initializing Git Submodules...")
+(shell-command "git submodule update --init --recursive")
+(message "Initialized.")
+
+(load "~/.emacs.d/init.el")
+(install-my-elpa-pkgs)
