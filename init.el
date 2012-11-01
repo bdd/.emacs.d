@@ -76,6 +76,9 @@
 (bind-key "C-j" 'join-line) ; more useful C-j
 (bind-key "C-x C-b" 'ibuffer)
 
+(when (fboundp 'ns-toggle-fullscreen)
+  (bind-key "C-M-S-f" 'ns-toggle-fullscreen))
+
 ;;; Window Movement
 (bind-key "C-<return>" 'other-window)
 (windmove-default-keybindings) ; default modifier key is 'shift.
