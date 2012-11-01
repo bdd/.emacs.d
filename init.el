@@ -9,7 +9,12 @@
 
 ;;; Load 'load-path.el' so we know where to load from.
 (load (emacs-d "load-path"))
+;;; Personal elisp functions.
 (load (emacs-d "bdd-defuns"))
+;;; Emacs Customization values.
+(let ((custom-file (emacs-d "custom.el")))
+  (when (file-exists-p custom-file)
+    (load custom-file)))
 
 (require 'use-package)
 (eval-when-compile
@@ -24,6 +29,7 @@
               (cons 'file (emacs-d "init.el")))
 
 ;;; no backup files, no auto-saving
+;;;--- TODO: Consolidate save files to a common directory.
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 
@@ -56,6 +62,10 @@
         mac-command-modifier 'super
         delete-by-moving-to-trash t))
 
+;;;; Mouse
+(when (boundp 'mouse-wheel-scroll-amount)
+  (setq mouse-wheel-scroll-amount '(0.01)))
+
 
 ;;;; Global Key Bindings
 (define-key global-map (kbd "RET") 'newline-and-indent) ; was C-j
@@ -84,10 +94,6 @@
 (show-paren-mode t)
 (global-auto-revert-mode t)
 (setq require-final-newline 'ask)
-
-;;; Mouse
-(when (boundp 'mouse-wheel-scroll-amount)
-  (setq mouse-wheel-scroll-amount '(0.01)))
 
 ;;; Electric parans, braces, double quotes, etc.
 (electric-pair-mode)
@@ -209,11 +215,6 @@
   :mode ("\\.scala$" . scala-mode))
 
 (use-package yasnippet)
-
-;;;; Emacs Managed Customizations
-(setq custom-file (emacs-d "custom.el"))
-(when (file-exists-p custom-file)
-  (load custom-file))
 
 
 ;;;; End of Initialization
