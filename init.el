@@ -108,7 +108,21 @@
       column-number-mode t)
 
 
-;;;; Packages
+;;;; Internal Packages
+(setq org-babel-load-languages
+      '((awk . t)
+        (C . t)
+        (emacs-lisp . t)
+        (gnuplot . t)
+        (java . t)
+        (org . t)
+        (perl . t)
+        (python . t)
+        (ruby . t)
+        (sh . t)))
+
+
+;;;; External Packages
 (require 'cl)
 (require 'package)
 (setq package-enable-at-startup nil) ; do not initialize ELPA packages at startup.
