@@ -38,6 +38,7 @@
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (menu-bar-mode (if window-system 1 0))
+(set-fringe-style '(4 . 0)) ; 4px left fringe and no right fringe.
 
 
 ;;;; Annoyances
@@ -237,3 +238,8 @@
 ;;;; End of Initialization
 ;;; Run emacs server for GUI instance.
 (when window-system (server-start))
+
+;;--- Resize the window as a remedy to display bug leaveing a char wide space next to right bar.
+;;--- TODO: Find out the root cause of this bug.
+(when window-system
+      (set-frame-size (selected-frame) 100 30))
