@@ -147,6 +147,7 @@
 
 (defvar my-elpa-pkgs
   '(expand-region
+    fill-column-indicator
     gist
     git-commit-mode
     gitconfig-mode
@@ -165,6 +166,8 @@
 
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
+
+(use-package fill-column-indicator)
 
 (use-package gist
   :bind ("C-c G" . gist-region-or-buffer))
