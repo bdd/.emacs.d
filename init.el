@@ -158,6 +158,7 @@
     magit
     markdown-mode
     multiple-cursors
+    mustache-mode
     protobuf-mode
     regex-tool
     scala-mode
@@ -226,6 +227,9 @@
          ("C->" . mc/mark-next-like-this)
          ("C-<" . mc/mark-previous-like-this)
          ("C-c C-<" . mc/mark-all-like-this)))
+
+(use-package mustache-mode
+  :mode ("\\.mustache" . mustache-mode))
 
 (use-package protobuf-mode
   :mode ("\\.proto$" . protobuf-mode))
