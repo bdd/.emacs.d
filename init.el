@@ -162,6 +162,7 @@
     protobuf-mode
     regex-tool
     scala-mode
+    yaml-mode
     yasnippet
     zenburn-theme))
 
@@ -238,6 +239,9 @@
 
 (use-package scala-mode
   :mode ("\\.scala$" . scala-mode))
+
+(use-package yaml-mode
+  :mode ("\\.\\(yml\\|yaml\\)$" . yaml-mode))
 
 (use-package yasnippet)
 
