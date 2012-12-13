@@ -176,9 +176,9 @@
 
 (use-package git-commit-mode)
 
-(use-package gitignore-mode)
-
 (use-package gitconfig-mode)
+
+(use-package gitignore-mode)
 
 (use-package go-mode
   :mode ("\\.go$" . go-mode)
