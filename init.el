@@ -76,6 +76,7 @@
 (bind-key "C-S-k" 'kill-whole-line)
 (bind-key "C-j" 'join-line) ; more useful C-j
 (bind-key "C-x C-b" 'ibuffer)
+(bind-key "C-x C-d" 'dired)
 
 (when (fboundp 'ns-toggle-fullscreen)
   (bind-key "C-M-S-f" 'ns-toggle-fullscreen))
