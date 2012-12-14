@@ -147,7 +147,8 @@
         (package-install pkg)))))
 
 (defvar my-elpa-pkgs
-  '(expand-region
+  '(edit-server
+    expand-region
     fill-column-indicator
     gist
     git-commit-mode
@@ -256,6 +257,11 @@
 ;;;; End of Initialization
 ;;; Run emacs server for GUI instance.
 (when window-system (server-start))
+
+;;; Edit Server is the helper of Edit with Emacs browser extension.
+(when window-system (progn
+                      (require 'edit-server)
+                      (edit-server-start)))
 
 ;;--- Resize the window as a remedy to display bug leaveing a char wide space next to right bar.
 ;;--- TODO: Find out the root cause of this bug.
