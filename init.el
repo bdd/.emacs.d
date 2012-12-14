@@ -162,6 +162,8 @@
     mustache-mode
     protobuf-mode
     regex-tool
+    ruby-mode
+    ruby-tools
     scala-mode
     yaml-mode
     yasnippet
@@ -237,6 +239,10 @@
   :mode ("\\.proto$" . protobuf-mode))
 
 (use-package regex-tool)
+
+(use-package ruby-mode)
+
+(use-package ruby-tools)
 
 (use-package scala-mode
   :mode ("\\.scala$" . scala-mode))
