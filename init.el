@@ -127,64 +127,44 @@
 ;;;; External Packages
 (require 'cl)
 (require 'package)
-(setq package-enable-at-startup nil) ; do not initialize ELPA packages at startup.
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/"))
+(package-initialize nil) ; just load the list.  don't initialize.
+(unless package-archive-contents ; never connected to an ELPA repository
+  (progn
+    (message "Refreshing ELPA package archives.")
+    (package-refresh-contents)))
 
-(defun my-elpa-pkgs-installed-p ()
-  (loop for pkg in my-elpa-pkgs
-        when (not (package-installed-p pkg)) do (return nil)
-        finally (return t)))
-
-(defun install-my-elpa-pkgs ()
-  (interactive)
-  (package-initialize)
-  (unless (my-elpa-pkgs-installed-p)
-    (message "%s" "Refreshing ELPA database...")
-    (package-refresh-contents)
-    (message "%s" " done.")
-    (dolist (pkg my-elpa-pkgs)
-      (when (not (package-installed-p pkg))
-        (package-install pkg)))))
-
-(defvar my-elpa-pkgs
-  '(edit-server
-    expand-region
-    fill-column-indicator
-    gist
-    git-commit-mode
-    gitconfig-mode
-    gitignore-mode
-    go-mode
-    google-c-style
-    ido-ubiquitous
-    magit
-    markdown-mode
-    multiple-cursors
-    mustache-mode
-    protobuf-mode
-    regex-tool
-    ruby-mode
-    ruby-tools
-    scala-mode
-    yaml-mode
-    yasnippet
-    zenburn-theme))
+(use-package edit-server
+  :ensure t
+  :if window-system
+  :init
+  (progn
+    (add-hook 'after-init-hook 'server-start t)
+    (add-hook 'after-init-hook 'edit-server-start t)))
 
 (use-package expand-region
+  :ensure t
   :bind ("C-=" . er/expand-region))
 
-(use-package fill-column-indicator)
+(use-package fill-column-indicator
+  :ensure t)
 
 (use-package gist
+  :ensure t
   :bind ("C-c G" . gist-region-or-buffer))
 
-(use-package git-commit-mode)
+(use-package git-commit-mode
+  :ensure t)
 
-(use-package gitconfig-mode)
+(use-package gitconfig-mode
+  :ensure t)
 
-(use-package gitignore-mode)
+(use-package gitignore-mode
+  :ensure t)
 
 (use-package go-mode
+  :ensure t
   :mode ("\\.go$" . go-mode)
   :init
   (progn
@@ -199,11 +179,25 @@
     (bind-key "C-c f" 'gofmt go-mode-map)
     (bind-key "C-c d" 'godoc go-mode-map)))
 
-(use-package google-c-style)
+(use-package google-c-style
+  :ensure t)
 
-(use-package ido-ubiquitous)
+(use-package ido-ubiquitous
+  :ensure t
+  :init
+  ;; Fix ido-ubiquitous for newer packages
+  (defmacro ido-ubiquitous-use-new-completing-read (cmd package)
+    `(eval-after-load ,package
+       '(defadvice ,cmd (around ido-ubiquitous-new activate)
+          (let ((ido-ubiquitous-enable-compatibility nil))
+            ad-do-it))))
+  :config
+  (progn
+    (ido-ubiquitous-use-new-completing-read yas/expand 'yasnippet)
+    (ido-ubiquitous-use-new-completing-read yas/visit-snippet-file 'yasnippet)))
 
 (use-package magit
+  :ensure t
   :bind ("C-x g" . magit-status)
   :config
   (progn
@@ -216,6 +210,8 @@
                   (flyspell-mode)))))
 
 (use-package markdown-mode
+  :disabled t
+  :ensure t
   :mode ("\\.\\(markdown\\|mdown\\|md\\)$" . markdown-mode)
   :config
   (progn
@@ -228,40 +224,42 @@
                   (auto-fill-mode 1)))))
 
 (use-package multiple-cursors
+  :ensure t
   :bind (("C-S-c C-S-c" . mc/edit-lines)
          ("C->" . mc/mark-next-like-this)
-         ("C-<" . mc/mark-previous-like-this)
+         ("C-<" . mc/mark-prvious-like-this)
          ("C-c C-<" . mc/mark-all-like-this)))
 
 (use-package mustache-mode
+  :ensure t
   :mode ("\\.mustache" . mustache-mode))
 
 (use-package protobuf-mode
+  :ensure t
   :mode ("\\.proto$" . protobuf-mode))
 
-(use-package regex-tool)
+(use-package regex-tool
+  :ensure t)
 
-(use-package ruby-mode)
+(use-package ruby-mode
+  :ensure t)
 
-(use-package ruby-tools)
+(use-package ruby-tools
+  :ensure t)
 
-(use-package scala-mode
+(use-package scala-mode2
+  :ensure t
   :mode ("\\.scala$" . scala-mode))
 
 (use-package yaml-mode
+  :ensure t
   :mode ("\\.\\(yml\\|yaml\\)$" . yaml-mode))
 
-(use-package yasnippet)
-
-
-;;;; End of Initialization
-;;; Run emacs server for GUI instance.
-(when window-system (server-start))
-
-;;; Edit Server is the helper of Edit with Emacs browser extension.
-(when window-system (progn
-                      (require 'edit-server)
-                      (edit-server-start)))
+(use-package yasnippet
+  :ensure t
+  :init
+  (progn
+    (setq yas/prompt-functions '(yas/ido-prompt))))
 
 ;;--- Resize the window as a remedy to display bug leaveing a char wide space next to right bar.
 ;;--- TODO: Find out the root cause of this bug.

@@ -9,7 +9,7 @@ Target version is Emacs 24.2 running on Mac OS X (10.8.2).
 
 Compiled from [Homebrew](http://mxcl.github.com/homebrew/):
 
-        brew install emacs --cocoa --srgb
+     brew install emacs --cocoa --srgb
 
 If you don't use Homebrew or don't have the compiler chain you can download
 a compiled version *(without the fullscreen patch)* from
@@ -20,12 +20,12 @@ a compiled version *(without the fullscreen patch)* from
 
 Most of the external packages are coming from ELPA and compatible repositories.
 A few packages, especially the most critical one `use-package` is sourced as a
-git submodule.  A post-install script is provided to take care of git submodule
-initialization (registration and clone) and then install all the specified
-packages from ELPA repositories.
+git submodule.  Before launching Emacs, you need to initialize Git submodules.
 
-    ./post-install.els
+    git submodule update --init --recursive
 
+External packages from ELPA repositories will be downloaded and installed at
+first launch.
 
 ## Staying up-to-date ##
 
