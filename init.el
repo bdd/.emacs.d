@@ -71,8 +71,9 @@
 ;;;; Global Key Bindings
 (define-key global-map (kbd "RET") 'newline-and-indent) ; was C-j
 
-(bind-key "C-h" 'delete-backward-char) ; unixism.  use <f1> for help-command.
-(bind-key "C-w" 'bdd-kill-region-or-backward-kill-word) ; more unixism.
+(bind-key "C-h" 'delete-backward-char) ; unixism
+(bind-key "C-w" 'bdd-kill-region-or-backward-kill-word) ; more unixism
+(bind-key "C-?" 'help-command) ; C-h is gone and <f1> is not really convenient
 (bind-key "C-S-k" 'kill-whole-line)
 (bind-key "C-j" 'join-line) ; more useful C-j
 (bind-key "C-x C-b" 'ibuffer)
