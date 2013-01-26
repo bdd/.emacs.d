@@ -69,6 +69,7 @@
 
 
 ;;;; Global Key Bindings
+(global-set-key [remap goto-line] 'bdd-goto-line-with-feedback)
 (define-key global-map (kbd "RET") 'newline-and-indent) ; was C-j
 
 (bind-key "C-h" 'delete-backward-char) ; unixism
