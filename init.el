@@ -142,7 +142,16 @@
   :init
   (progn
     (add-hook 'after-init-hook 'server-start t)
-    (add-hook 'after-init-hook 'edit-server-start t)))
+    (add-hook 'after-init-hook 'edit-server-start t))
+  :config
+  (progn
+    (add-hook 'edit-server-start-hook
+              #'(lambda ()
+                  (set-fill-column 80)
+                  (auto-fill-mode)
+                  (flyspell-mode)))))
+
+
 
 (use-package expand-region
   :ensure t
