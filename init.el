@@ -127,7 +127,6 @@
 
 
 ;;;; External Packages
-(require 'cl)
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/"))
