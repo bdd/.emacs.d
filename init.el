@@ -136,6 +136,11 @@
     (message "Refreshing ELPA package archives.")
     (package-refresh-contents)))
 
+(use-package ag
+  :ensure t
+  :config
+  (setq ag-arguments (list "--stats" "--smart-case" "--nogroup" "--column")))
+
 (use-package edit-server
   :ensure t
   :if window-system
