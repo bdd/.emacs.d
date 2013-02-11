@@ -139,7 +139,8 @@
 (use-package ag
   :ensure t
   :config
-  (setq ag-arguments (list "--stats" "--smart-case" "--nogroup" "--column")))
+  (setq ag-arguments (list "--stats" "--smart-case" "--nogroup" "--column"
+                           "--")))
 
 (use-package edit-server
   :ensure t
