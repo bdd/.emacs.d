@@ -139,8 +139,13 @@
 (use-package ag
   :ensure t
   :config
-  (setq ag-arguments (list "--stats" "--smart-case" "--nogroup" "--column"
-                           "--")))
+  (progn
+    (setq ag-arguments (list "--stats" "--smart-case" "--nogroup" "--column"
+                             "--"))
+    (bind-key "n" 'compilation-next-error ag-mode-map)
+    (bind-key "p" 'compilation-previous-error ag-mode-map)
+    (bind-key "N" 'compilation-next-file ag-mode-map)
+    (bind-key "P" 'compilation-previous-file ag-mode-map)))
 
 (use-package edit-server
   :ensure t
