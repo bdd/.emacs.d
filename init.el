@@ -61,7 +61,8 @@
 (when (string= system-type "darwin")
   (setq mac-option-modifier 'meta
         mac-command-modifier 'super
-        delete-by-moving-to-trash t))
+        delete-by-moving-to-trash t
+        trash-directory (expand-file-name ".Trash" (getenv "HOME"))))
 
 ;;;; Mouse
 (when (boundp 'mouse-wheel-scroll-amount)
