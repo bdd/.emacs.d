@@ -260,6 +260,10 @@
   :ensure t
   :mode ("\\.proto$" . protobuf-mode))
 
+(use-package puppet-mode
+  :ensure t
+  :mode ("\\.pp$" . puppet-mode))
+
 (use-package regex-tool
   :ensure t)
 
