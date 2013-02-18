@@ -11,10 +11,9 @@
 (load (emacs-d "load-path"))
 ;;; Personal elisp functions.
 (load (emacs-d "bdd-defuns"))
-;;; Emacs Customization values.
-(let ((custom-file (emacs-d "custom.el")))
-  (when (file-exists-p custom-file)
-    (load custom-file)))
+;;; Theme
+(load-theme 'tomorrow-night-eighties t)
+
 
 (require 'use-package)
 (eval-when-compile
