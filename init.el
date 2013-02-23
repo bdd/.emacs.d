@@ -148,6 +148,12 @@
     (bind-key "N" 'compilation-next-file ag-mode-map)
     (bind-key "P" 'compilation-previous-file ag-mode-map)))
 
+(use-package browse-kill-ring
+  :ensure t
+  :config
+  (progn
+    (browse-kill-ring-default-keybindings)))
+
 (use-package edit-server
   :ensure t
   :if window-system
