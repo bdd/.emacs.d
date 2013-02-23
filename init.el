@@ -95,7 +95,6 @@
 (setq-default show-trailing-whitespace t)
 (setq whitespace-style '(face empty tabs lines-tail tab-mark))
 (setq whitespace-line-column nil) ; equals to fill-column
-;(global-whitespace-mode t)
 
 (setq-default indent-tabs-mode nil)
 (setq tab-always-indent 'complete)
@@ -294,7 +293,7 @@
   (progn
     (setq yas/prompt-functions '(yas/ido-prompt))))
 
-;;--- Resize the window as a remedy to display bug leaveing a char wide space next to right bar.
+;;--- Resize the window as a remedy to display bug leaving a char wide space next to right bar.
 ;;--- TODO: Find out the root cause of this bug.
 (when window-system
       (set-frame-size (selected-frame) 100 30))

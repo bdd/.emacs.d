@@ -11,7 +11,8 @@
 
 (defun add-to-load-path (path &optional dir)
   (setq load-path
-        (cons (expand-file-name path (or dir user-emacs-directory)) load-path)))
+        (cons (expand-file-name path (or dir user-emacs-directory))
+              load-path)))
 
 (defun add-to-custom-theme-load-path (path &optional dir)
   (setq custom-theme-load-path
