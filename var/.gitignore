@@ -1,0 +1,6 @@
+# We want this directory in git but don't care about its contents.
+# So we will ignore everything in it first;
+*
+# ...but keep this file (.gitignore) to keep this directory non-empty from
+# git's point of view.
+!.gitignore

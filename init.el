@@ -54,7 +54,8 @@
 ;;;; Ido
 (ido-mode 1)
 (setq ido-enanble-flex-matching t
-      ido-everywhere t)
+      ido-everywhere t
+      ido-save-directory-list-file (emacs-d "var/ido-last.el"))
 
 ;;;; Keyboard
 (when (string= system-type "darwin")
@@ -162,8 +163,6 @@
                   (auto-fill-mode)
                   (flyspell-mode)))))
 
-
-
 (use-package expand-region
   :ensure t
   :bind ("C-=" . er/expand-region))
@@ -249,7 +248,10 @@
   :bind (("C-S-c C-S-c" . mc/edit-lines)
          ("C->" . mc/mark-next-like-this)
          ("C-<" . mc/mark-prvious-like-this)
-         ("C-c C-<" . mc/mark-all-like-this)))
+         ("C-c C-<" . mc/mark-all-like-this))
+  :config
+  (progn
+    (setq mc/list-file (emacs-d "var/multiple-cursors-all-or-once.el"))))
 
 (use-package mustache-mode
   :ensure t
