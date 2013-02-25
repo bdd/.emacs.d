@@ -30,7 +30,8 @@
 ;;; no backup files, no auto-saving
 ;;;--- TODO: Consolidate save files to a common directory.
 (setq make-backup-files nil)
-(setq auto-save-default nil)
+(setq auto-save-default nil
+      auto-save-list-file-prefix nil)
 
 
 ;;;; UI
@@ -140,8 +141,7 @@
   :ensure t
   :config
   (progn
-    (setq ag-arguments (list "--stats" "--smart-case" "--nogroup" "--column"
-                             "--"))
+    (setq ag-highlight-search t)
     (bind-key "n" 'compilation-next-error ag-mode-map)
     (bind-key "p" 'compilation-previous-error ag-mode-map)
     (bind-key "N" 'compilation-next-file ag-mode-map)
