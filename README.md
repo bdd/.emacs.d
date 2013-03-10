@@ -1,6 +1,6 @@
-# bdd's Emacs #
+# bdd's ~/.emacs.d #
 
-Berk D. Demir's Emacs configuration and a few personal Elisp functions.
+Berk D. Demir's Emacs configuration and a few custom Elisp functions.
 
 
 ## Version ##
@@ -18,14 +18,14 @@ a compiled version *(without the fullscreen patch)* from
 
 ## Installation ##
 
-Most of the external packages are coming from ELPA and compatible repositories.
-A few packages, especially the most critical one `use-package` is sourced as a
-git submodule.  Before launching Emacs, you need to initialize Git submodules.
+Almost all packages are sourced from [MELPA](http://melpa.milkbox.net/)
+repository.  The only exception is `use-package`, a macro to ensure presence of
+packages and isolate their configuration.  It is sourced as a Git submodule and
+the submodule system needs to be initialized before launching Emacs.
 
     git submodule update --init --recursive
 
-External packages from ELPA repositories will be downloaded and installed at
-first launch.
+Packages from MELPA will be downloaded and installed at first launch.
 
 ## Staying up-to-date ##
 
