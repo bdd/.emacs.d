@@ -235,7 +235,6 @@
                   (flyspell-mode)))))
 
 (use-package markdown-mode
-  :disabled t
   :ensure t
   :mode ("\\.\\(markdown\\|mdown\\|md\\)$" . markdown-mode)
   :config
