@@ -47,6 +47,8 @@
 
 ;;;; Annoyances
 (setq inhibit-splash-screen t)
+(setq initial-scratch-message nil)
+(setq initial-major-mode 'text-mode)
 (fset 'yes-or-no-p 'y-or-n-p) ; brevity
 (setq ring-bell-function 'ignore) ; hush...
 ;;; Disable commonly unintended key presses.
