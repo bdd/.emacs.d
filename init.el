@@ -35,10 +35,14 @@
 
 
 ;;;; UI
-(tool-bar-mode 0)
-(scroll-bar-mode 0)
-(menu-bar-mode (if window-system 1 0))
-(set-fringe-style '(4 . 0)) ; 4px left fringe and no right fringe.
+(if window-system
+    (progn
+      (tool-bar-mode 0)
+      (scroll-bar-mode 0)
+      ;; 4px left, and no right right fringe
+      (set-fringe-style '(4 . 0)))
+  ;; No menu bar when running from a terminal.
+  (menu-bar-mode 0))
 
 
 ;;;; Annoyances
