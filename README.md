@@ -5,7 +5,7 @@ Berk D. Demir's Emacs configuration and a few custom Elisp functions.
 
 ## Version ##
 
-Target version is Emacs 24.2 running on Mac OS X (10.8.2).
+Target version is Emacs 24.3 running on Mac OS X (10.8.3).
 
 Compiled from [Homebrew](http://mxcl.github.com/homebrew/):
 

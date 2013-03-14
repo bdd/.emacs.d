@@ -88,8 +88,6 @@
 (bind-key "C-x C-b" 'ibuffer)
 (bind-key "C-x C-d" 'dired)
 
-(when (fboundp 'ns-toggle-fullscreen)
-  (bind-key "C-M-S-f" 'ns-toggle-fullscreen))
 
 ;;; Window Movement
 (bind-key "C-<return>" 'other-window)
@@ -297,8 +295,3 @@
   :init
   (progn
     (setq yas/prompt-functions '(yas/ido-prompt))))
-
-;;--- Resize the window as a remedy to display bug leaving a char wide space next to right bar.
-;;--- TODO: Find out the root cause of this bug.
-(when window-system
-      (set-frame-size (selected-frame) 100 30))
