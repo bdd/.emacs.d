@@ -118,6 +118,9 @@
 
 
 ;;;; Internal Packages
+(when window-system
+  (add-hook 'after-init-hook 'server-start t))
+
 (setq org-babel-load-languages
       '((awk . t)
         (C . t)
@@ -162,7 +165,6 @@
   :if window-system
   :init
   (progn
-    (add-hook 'after-init-hook 'server-start t)
     (add-hook 'after-init-hook 'edit-server-start t))
   :config
   (progn
