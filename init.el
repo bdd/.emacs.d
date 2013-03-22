@@ -183,7 +183,7 @@
 
 (use-package gist
   :ensure t
-  :bind ("C-c G" . gist-region-or-buffer))
+  :bind ("C-c g p" . gist-region-or-buffer-private))
 
 (use-package git-commit-mode
   :ensure t)
