@@ -62,6 +62,8 @@
 (ido-mode 1)
 (setq ido-enanble-flex-matching t
       ido-everywhere t
+      ido-use-virtual-buffers t
+      recentf-save-file (emacs-d "var/recentf")
       ido-save-directory-list-file (emacs-d "var/ido-last.el"))
 
 ;;;; Keyboard
