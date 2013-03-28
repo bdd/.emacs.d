@@ -198,7 +198,6 @@
 
 (use-package go-mode
   :ensure t
-  :mode ("\\.go$" . go-mode)
   :init
   (progn
     (defun go-capitalize-previous-word ()
@@ -244,7 +243,7 @@
 
 (use-package markdown-mode
   :ensure t
-  :mode ("\\.\\(markdown\\|mdown\\|md\\)$" . markdown-mode)
+  :mode ("\\.\\(m\\(ark\\)?down\\|md\\)$" . markdown-mode)
   :config
   (progn
     (let ((preferred-markdown-impl "peg-markdown"))
@@ -266,12 +265,10 @@
     (setq mc/list-file (emacs-d "var/multiple-cursors-all-or-once.el"))))
 
 (use-package mustache-mode
-  :ensure t
-  :mode ("\\.mustache" . mustache-mode))
+  :ensure t)
 
 (use-package protobuf-mode
-  :ensure t
-  :mode ("\\.proto$" . protobuf-mode))
+  :ensure t)
 
 (use-package puppet-mode
   :ensure t
@@ -287,12 +284,10 @@
   :ensure t)
 
 (use-package scala-mode2
-  :ensure t
-  :mode ("\\.scala$" . scala-mode))
+  :ensure t)
 
 (use-package yaml-mode
-  :ensure t
-  :mode ("\\.\\(yml\\|yaml\\)$" . yaml-mode))
+  :ensure t)
 
 (use-package yasnippet
   :ensure t
