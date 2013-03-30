@@ -80,7 +80,6 @@
 
 ;;;; Global Key Bindings
 (global-set-key [remap goto-line] 'bdd-goto-line-with-feedback)
-(define-key global-map (kbd "RET") 'newline-and-indent) ; was C-j
 
 (bind-key "C-h" 'delete-backward-char) ; unixism
 (bind-key "C-w" 'bdd-kill-region-or-backward-kill-word) ; more unixism
@@ -109,9 +108,9 @@
 (global-auto-revert-mode t)
 (setq require-final-newline 'ask)
 
-;;; Electric parans, braces, double quotes, etc.
-(electric-pair-mode)
-
+;;; Electric
+(electric-pair-mode)   ; paranthesis, braces, quotation marks.
+(electric-indent-mode) ; on-the-fly reindentation.
 
 ;;;; Mode Line
 (setq size-indication-mode t
