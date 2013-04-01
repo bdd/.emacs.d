@@ -129,18 +129,6 @@
 (when window-system
   (add-hook 'after-init-hook 'server-start t))
 
-(setq org-babel-load-languages
-      '((awk . t)
-        (C . t)
-        (emacs-lisp . t)
-        (gnuplot . t)
-        (java . t)
-        (org . t)
-        (perl . t)
-        (python . t)
-        (ruby . t)
-        (sh . t)))
-
 
 ;;;; External Packages
 (require 'package)
