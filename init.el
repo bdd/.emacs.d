@@ -174,6 +174,9 @@
   (progn
     (browse-kill-ring-default-keybindings)))
 
+(use-package diminish
+  :ensure t)
+
 (use-package edit-server
   :ensure t
   :if window-system
@@ -312,9 +315,12 @@
 
 (use-package yasnippet
   :ensure t
+  :diminish yas-minor-mode
+  :mode ("/\\.emacs\\.d/snippets/" . snippet-mode)
   :init
   (progn
-    (setq yas/prompt-functions '(yas/ido-prompt))))
+    (setq yas-verbosity 3)
+    (yas-global-mode 1)))
 
 
 (add-hook 'after-init-hook
