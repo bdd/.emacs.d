@@ -154,8 +154,6 @@
 
 (require 'use-package)
 (setq use-package-minimum-reported-time 0)
-(eval-when-compile
-  (setq use-package-verbose (null byte-compile-current-file)))
 
 
 (use-package ag
@@ -180,15 +178,15 @@
   :ensure t
   :if window-system
   :init
-  (progn
-    (add-hook 'after-init-hook 'edit-server-start t))
+  (add-hook 'after-init-hook 'edit-server-start)
   :config
   (progn
+    (bind-key "C-c C-k" 'edit-server-abort edit-server-edit-mode-map)
     (add-hook 'edit-server-start-hook
-              #'(lambda ()
-                  (set-fill-column 80)
-                  (auto-fill-mode)
-                  (flyspell-mode)))))
+              '(lambda ()
+                 (auto-fill-mode)
+                 (flyspell-mode)
+                 (set-fill-column 80)))))
 
 (use-package expand-region
   :ensure t
@@ -254,12 +252,11 @@
   :config
   (progn
     (setenv "GIT_PAGER" "")
-
     (add-hook 'magit-log-edit-mode-hook
-              #'(lambda ()
-                  (set-fill-column 72)
-                  (auto-fill-mode)
-                  (flyspell-mode)))))
+              '(lambda ()
+                 (auto-fill-mode)
+                 (flyspell-mode)
+                 (set-fill-column 80)))))
 
 (use-package markdown-mode
   :ensure t
@@ -271,8 +268,9 @@
         (setq markdown-command preferred-markdown-impl)))
 
     (add-hook 'markdown-mode-hook
-              #'(lambda ()
-                  (auto-fill-mode 1)))))
+              '(lambda ()
+                 (auto-fill-mode)
+                 (flyspell-mode)))))
 
 (use-package multiple-cursors
   :ensure t
