@@ -120,6 +120,7 @@
 ;;;; Misc
 (show-paren-mode)
 (global-auto-revert-mode)
+(setq tramp-persistency-file-name (emacs-d "var/tramp-history.el"))
 
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
