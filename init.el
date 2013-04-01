@@ -80,13 +80,11 @@
 
 (require 'bind-key)
 (bind-key "C-h" 'delete-backward-char) ; unixism
-(bind-key "C-w" 'bdd-kill-region-or-backward-kill-word) ; more unixism
 (bind-key "C-?" 'help-command) ; C-h is gone and <f1> is not really convenient
 (bind-key "C-S-k" 'kill-whole-line)
-(bind-key "C-j" 'join-line) ; more useful C-j
+(bind-key "C-j" '(lambda () (interactive) (join-line -1))) ; more useful C-j
 (bind-key "C-x C-b" 'ibuffer)
 (bind-key "C-x C-d" 'dired)
-
 
 ;;; Window Movement
 (bind-key "C-<return>" 'other-window)

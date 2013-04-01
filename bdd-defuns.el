@@ -1,40 +1,70 @@
-(defun insert-utc ()
-  "Insert UTC date and time in ISO 8601 format"
-  (interactive)
-  (insert (format-time-string "%Y-%m-%dT%H:%MZ")))
+(require 'bind-key)
 
-;; Fix kill-word.
-;; Default implementation swallows whitespace after the word.
-(defun bdd-kill-word (arg)
-  "Special version of kill-word which swallows spaces separate from words"
-  (interactive "p")
-  (let ((whitespace-regexp "\\s-+"))
-    (kill-region (point)
-                 (cond
-                  ((looking-at whitespace-regexp)
-		   (re-search-forward whitespace-regexp) (point))
-                  ((looking-at "\n")
-		   (kill-line) (bdd-kill-word arg))
-                  (t (forward-word arg) (point))))))
+(defun kill-region-or-backward-kill-word (arg)
+  "If mark is active kill the region else backward kill word.
 
-(defun bdd-backward-kill-word (arg)
-  "Special version of backward-kill-word which swallows spaces separate from words"
+Traditionally Unix uses `C-w' for backward kill word.  Preserve Emacs default
+of kill-region if the mark is active, otherwise fallback to `backward-kill-word'.
+Also fix `backward-kill-word' so that it stops at whitespace.
+"
   (interactive "p")
-  (if (looking-back "\\s-+")
-      (kill-region (point) (progn (re-search-backward "\\S-") (forward-char 1) (point)))
-    (backward-kill-word arg)))
 
-;; Traditionally Unix uses `C-w' for backward kill word.  Preserve Emacs default
-;; of kill-region if the mark is active, otherwise fallback to backward-kill-word.
-(defun bdd-kill-region-or-backward-kill-word (arg)
-  "If mark is active kill the region else backward kill word."
-  (interactive "p")
+  (defun backward-kill-word-without-spaces (arg)
+    "Wrap backward-kill-word to swallow spaces separate from words."
+
+    (if (looking-back "\\s-+") ; whitespace
+      (kill-region (point)
+                     (progn
+                       (re-search-backward "\\S-") ; not whitespace
+                       (forward-char 1)
+                       (point)))
+      (backward-kill-word arg)))
+
   (if mark-active
       (kill-region (point) (mark))
-    (bdd-backward-kill-word arg)))
+    (backward-kill-word-without-spaces arg)))
+
+(bind-key "C-w" 'kill-region-or-backward-kill-word)
+
+
+(global-unset-key (kbd "C-x m")) ; Need this as a prefix. (was `compose-mail')
+
+(defun mark-line (&optional arg)
+  (interactive "p")
+  (or arg (setq arg 1))
+  (beginning-of-line)
+  (set-mark (point))
+  (end-of-line arg))
+
+(bind-key "C-x m l" 'mark-line)
+
+(defun mark-sentence (&optional arg)
+  (interactive "p")
+  (or arg (setq arg 1))
+  (backward-sentence)
+  (mark-end-of-sentence arg))
+
+(bind-key "C-x m s" 'mark-sentence)
+
+
+(defun duplicate-line (&optional arg)
+  (interactive "p")
+  (or arg (setq arg 1))
+  (save-excursion
+    (end-of-line)
+    (let (line-text)
+      (setq line-text (buffer-substring (line-beginning-position) (point)))
+      (while (> arg 0)
+        (setq arg (- arg 1))
+        (newline)
+        (delete-horizontal-space) ; delete auto-indendation whitespace
+        (insert line-text)))))
+
+(bind-key "C-M-y" 'duplicate-line)
+
 
 ;; from whatthemacsd.com
-(defun bdd-goto-line-with-feedback ()
+(defun goto-line-with-feedback ()
   "Show line numbers temporarily, while prompting for the line number input"
   (interactive)
   (unwind-protect
@@ -43,11 +73,4 @@
       (goto-line (read-number "Goto line: ")))
     (linum-mode -1)))
 
-; Frequently opened directories.
-(setq bdd-code-dir "~/src")
-(defun bdd-ido-find-project ()
-  (interactive)
-  (find-file
-   (expand-file-name (ido-completing-read "Project: "
-					  (directory-files bdd-code-dir nil "^[^.]")))
-   (expand-file-name bdd-code-dir)))
+(global-set-key [remap goto-line] 'goto-line-with-feedback)
