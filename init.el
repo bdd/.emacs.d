@@ -1,6 +1,7 @@
 ;;;; Emacs Configuration
 ;;;; Berk D. Demir <bdd@mindcast.org>
 
+(defconst emacs-start-time (current-time))
 (setq message-log-max 16384)
 
 (defun emacs-d (fn)
@@ -14,10 +15,6 @@
 ;;; Theme
 (load-theme 'tomorrow-night-eighties t)
 
-
-(require 'use-package)
-(eval-when-compile
-  (setq use-package-verbose (null byte-compile-current-file)))
 
 ;;;; Environment
 (setq shell-file-name "zsh")
@@ -81,6 +78,7 @@
 ;;;; Global Key Bindings
 (global-set-key [remap goto-line] 'bdd-goto-line-with-feedback)
 
+(require 'bind-key)
 (bind-key "C-h" 'delete-backward-char) ; unixism
 (bind-key "C-w" 'bdd-kill-region-or-backward-kill-word) ; more unixism
 (bind-key "C-?" 'help-command) ; C-h is gone and <f1> is not really convenient
@@ -144,6 +142,12 @@
   (progn
     (message "Refreshing ELPA package archives.")
     (package-refresh-contents)))
+
+(require 'use-package)
+(setq use-package-minimum-reported-time 0)
+(eval-when-compile
+  (setq use-package-verbose (null byte-compile-current-file)))
+
 
 (use-package ag
   :ensure t
@@ -293,3 +297,13 @@
   :init
   (progn
     (setq yas/prompt-functions '(yas/ido-prompt))))
+
+
+(add-hook 'after-init-hook
+          `(lambda ()
+             (let ((elapsed (float-time (time-subtract (current-time)
+                                                       emacs-start-time))))
+               (message "Initialization complete. (%.3fs)\n%s"
+                        elapsed
+                        (make-string 80 ?\-))))
+          t)
