@@ -4,9 +4,14 @@
 (defconst emacs-start-time (current-time))
 (setq message-log-max 16384)
 
-(defun emacs-d (fn)
-  "Expand file name relative to user-emacs-directory."
-  (expand-file-name fn user-emacs-directory))
+(defun emacs-d (filename)
+  "Expand FILENAME relative to `user-emacs-directory.'"
+  (expand-file-name filename user-emacs-directory))
+
+(defmacro hook-into-modes (function mode-hooks)
+  "Add FUNCTION to hooks in MODE-HOOKS."
+  `(dolist (hook ,mode-hooks)
+     (add-hook hook ,function)))
 
 ;;; Load 'load-path.el' so we know where to load from.
 (load (emacs-d "load-path"))
@@ -42,17 +47,10 @@
   (menu-bar-mode 0))
 
 
-;;;; Annoyances
-(setq inhibit-splash-screen t)
-(setq initial-scratch-message nil)
-(setq initial-major-mode 'text-mode)
-(fset 'yes-or-no-p 'y-or-n-p) ; brevity
-(setq ring-bell-function 'ignore) ; hush...
-;;; Disable commonly unintended key presses.
-(global-unset-key (kbd "C-z")) ; suspend-frame
-(global-unset-key (kbd "s-p")) ; ns-print-buffer
-(global-unset-key (kbd "s-q")) ; save-buffers-kill-emacs
-(global-unset-key (kbd "s-t")) ; ns-popup-font-panel
+;;;; Mode Line
+(setq size-indication-mode t
+      line-number-mode t
+      column-number-mode t)
 
 
 ;;;; Ido
@@ -76,8 +74,6 @@
 
 
 ;;;; Global Key Bindings
-(global-set-key [remap goto-line] 'bdd-goto-line-with-feedback)
-
 (require 'bind-key)
 (bind-key "C-h" 'delete-backward-char) ; unixism
 (bind-key "C-?" 'help-command) ; C-h is gone and <f1> is not really convenient
@@ -91,27 +87,42 @@
 (windmove-default-keybindings) ; default modifier key is 'shift.
 (setq windmove-wrap-around t)  ;---??? not sure if I really want this.
 
-;;;; Misc
-;;; Whitespace
-(setq-default indicate-empty-lines t)
-(setq-default show-trailing-whitespace t)
-(setq whitespace-style '(face empty tabs lines-tail tab-mark))
-(setq whitespace-line-column nil) ; equals to fill-column
-
-(setq-default indent-tabs-mode nil)
+;;; TAB behavior
 (setq tab-always-indent 'complete)
-(show-paren-mode t)
-(global-auto-revert-mode t)
-(setq require-final-newline 'ask)
+(setq-default indent-tabs-mode nil)   ; never use tabs to indent.
 
-;;; Electric
+
+;;;; Electric
 (electric-pair-mode)   ; paranthesis, braces, quotation marks.
 (electric-indent-mode) ; on-the-fly reindentation.
 
-;;;; Mode Line
-(setq size-indication-mode t
-      line-number-mode t
-      column-number-mode t)
+
+;;;; Whitespace
+(setq-default indicate-empty-lines t) ; in the left fringe
+(setq require-final-newline 'ask)
+(setq whitespace-style '(face trailing tabs tab-mark))
+(hook-into-modes 'whitespace-mode '(prog-mode-hook))
+
+
+;;;; Annoyances
+(setq inhibit-splash-screen t)
+(setq initial-scratch-message nil)
+(setq initial-major-mode 'text-mode)
+(fset 'yes-or-no-p 'y-or-n-p) ; brevity
+(setq ring-bell-function 'ignore) ; hush...
+;;; Disable commonly unintended key presses.
+(global-unset-key (kbd "C-z")) ; suspend-frame
+(global-unset-key (kbd "s-p")) ; ns-print-buffer
+(global-unset-key (kbd "s-q")) ; save-buffers-kill-emacs
+(global-unset-key (kbd "s-t")) ; ns-popup-font-panel
+
+
+;;;; Misc
+(show-paren-mode)
+(global-auto-revert-mode)
+
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
 
 
 ;;;; Internal Packages
