@@ -122,11 +122,11 @@
 (global-auto-revert-mode)
 (setq tramp-persistency-file-name (emacs-d "var/tramp-history.el"))
 
+
+;;;; Internal Packages
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
-
-;;;; Internal Packages
 (when window-system
   (add-hook 'after-init-hook 'server-start t))
 
