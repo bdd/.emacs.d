@@ -151,6 +151,7 @@
 
 (use-package ag
   :ensure t
+  :defer t
   :config
   (progn
     (setq ag-highlight-search t)
@@ -161,6 +162,7 @@
 
 (use-package browse-kill-ring
   :ensure t
+  :defer t
   :config
   (progn
     (browse-kill-ring-default-keybindings)))
@@ -184,23 +186,28 @@
   :bind ("C-=" . er/expand-region))
 
 (use-package fill-column-indicator
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package gist
   :ensure t
   :bind ("C-c g p" . gist-region-or-buffer-private))
 
 (use-package git-commit-mode
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package gitconfig-mode
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package gitignore-mode
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package go-mode
   :ensure t
+  :defer t
   :init
   (progn
     (defun go-capitalize-previous-word ()
@@ -215,7 +222,8 @@
     (bind-key "C-c d" 'godoc go-mode-map)))
 
 (use-package google-c-style
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package ido-ubiquitous
   :ensure t
@@ -268,29 +276,32 @@
     (setq mc/list-file (emacs-d "var/multiple-cursors-all-or-once.el"))))
 
 (use-package mustache-mode
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package protobuf-mode
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package puppet-mode
   :ensure t
   :mode ("\\.pp$" . puppet-mode))
 
 (use-package regex-tool
-  :ensure t)
-
-(use-package ruby-mode
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package ruby-tools
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package scala-mode2
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package yaml-mode
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package yasnippet
   :ensure t
