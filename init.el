@@ -103,11 +103,18 @@
 (setq whitespace-style '(face trailing tabs tab-mark))
 (hook-into-modes 'whitespace-mode '(prog-mode-hook))
 
+;;;; *scratch* buffer
+(setq initial-scratch-message nil)
+(setq initial-major-mode 'text-mode)
+;; Never kill, just bury
+(defun dont-kill-but-bury-scratch ()
+  (if (equal (buffer-name (current-buffer)) "*scratch*")
+      (progn (bury-buffer) nil)
+    t))
+(add-hook 'kill-buffer-query-functions 'dont-kill-but-bury-scratch)
 
 ;;;; Annoyances
 (setq inhibit-splash-screen t)
-(setq initial-scratch-message nil)
-(setq initial-major-mode 'text-mode)
 (fset 'yes-or-no-p 'y-or-n-p) ; brevity
 (setq ring-bell-function 'ignore) ; hush...
 ;;; Disable commonly unintended key presses.
