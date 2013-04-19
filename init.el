@@ -140,8 +140,10 @@
 
 ;;;; External Packages
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/"))
+(setq package-archives
+      (append package-archives
+              '(("melpa" . "http://melpa.milkbox.net/packages/"))
+              '(("org" . "http://orgmode.org/elpa/"))))
 (package-initialize nil) ; just load the list.  don't initialize.
 (unless package-archive-contents ; never connected to an ELPA repository
   (progn
