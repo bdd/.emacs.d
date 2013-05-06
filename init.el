@@ -94,8 +94,11 @@
 
 ;;;; Electric
 (electric-pair-mode)   ; paranthesis, braces, quotation marks.
-(electric-indent-mode) ; on-the-fly reindentation.
-
+;(electric-indent-mode) ; on-the-fly reindentation.
+;; Use auto indentation only in programming modes.
+(hook-into-modes '(lambda ()
+                    (local-set-key (kbd "RET") 'newline-and-indent))
+                 '(prog-mode-hook))
 
 ;;;; Whitespace
 (setq-default indicate-empty-lines t) ; in the left fringe
@@ -286,6 +289,20 @@
 (use-package mustache-mode
   :ensure t
   :defer t)
+
+(use-package org
+  :ensure t
+  :defer t
+  :config
+  (progn
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((awk . t)
+       (emacs-lisp . t)
+       (java . t)
+       (python . t)
+       (ruby . t)
+       (sh . t)))))
 
 (use-package protobuf-mode
   :ensure t
