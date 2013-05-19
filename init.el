@@ -128,6 +128,19 @@
 (global-unset-key (kbd "s-t")) ; ns-popup-font-panel
 
 
+;;;; Disabled commands
+(defun enable-commands (commands)
+  (dolist (cmd commands)
+    (put cmd 'disabled nil)))
+
+(enable-commands
+ '(erase-buffer
+   upcase-region
+   downcase-region
+   dired-find-alternate-file
+   narrow-to-region))
+
+
 ;;;; Misc
 (show-paren-mode)
 (global-auto-revert-mode)
