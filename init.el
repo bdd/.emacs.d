@@ -86,6 +86,7 @@
 (bind-key "C-<return>" 'other-window)
 (windmove-default-keybindings) ; default modifier key is 'shift.
 (setq windmove-wrap-around t)  ;---??? not sure if I really want this.
+(winner-mode) ; C-c <left> to restore last window layout
 
 ;;; TAB behavior
 (setq tab-always-indent 'complete)
