@@ -17,6 +17,8 @@
 (load (emacs-d "load-path"))
 ;;; Personal elisp functions.
 (load (emacs-d "bdd-defuns"))
+;;; Twitter
+(load (emacs-d "twitter") 'missing-ok)
 ;;; Theme
 (load-theme 'tomorrow-night-eighties t)
 
