@@ -19,13 +19,11 @@ a compiled version *(without the fullscreen patch)* from
 ## Installation ##
 
 Almost all packages are sourced from [MELPA](http://melpa.milkbox.net/)
-repository.  The only exception is `use-package`, a macro to ensure presence of
-packages and isolate their configuration.  It is sourced as a Git submodule and
-the submodule system needs to be initialized before launching Emacs.
+repository.  At first launch they will be downloaded and installed.
 
-    git submodule update --init --recursive
+The only exception is the latest version of `org-mode'.  Emacs ships with
+an older version of so you need to manually install from `list-packages' menu.
 
-Packages from MELPA will be downloaded and installed at first launch.
 
 ## Staying up-to-date ##
 

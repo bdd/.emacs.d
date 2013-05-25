@@ -5,7 +5,7 @@
 (setq message-log-max 16384)
 
 (defun emacs-d (filename)
-  "Expand FILENAME relative to `user-emacs-directory.'"
+  "Expand FILENAME relative to `user-emacs-directory'."
   (expand-file-name filename user-emacs-directory))
 
 (defmacro hook-into-modes (function mode-hooks)
@@ -155,20 +155,7 @@
   (add-hook 'after-init-hook 'server-start t))
 
 
-;;;; External Packages
-(require 'package)
-(setq package-archives
-      (append package-archives
-              '(("melpa" . "http://melpa.milkbox.net/packages/"))
-              '(("org" . "http://orgmode.org/elpa/"))))
-(package-initialize nil) ; just load the list.  don't initialize.
-(unless package-archive-contents ; never connected to an ELPA repository
-  (progn
-    (message "Refreshing ELPA package archives.")
-    (package-refresh-contents)))
 
-(require 'use-package)
-(setq use-package-minimum-reported-time 0)
 
 
 (use-package ag

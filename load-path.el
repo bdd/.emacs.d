@@ -1,52 +1,44 @@
 ;;; load-path.el
 
-(defconst user-lisp-directory
-  (expand-file-name "lisp/" user-emacs-directory))
+;;;; Custom Themes
 (defconst user-theme-directory
   (expand-file-name "themes/" user-emacs-directory))
 (defconst site-theme-directory
   (expand-file-name "themes/" data-directory))
-(defconst elpa-package-directory
-  (expand-file-name "elpa/" user-emacs-directory))
-
-(defun add-to-load-path (path &optional dir)
-  (setq load-path
-        (cons (expand-file-name path (or dir user-emacs-directory))
-              load-path)))
 
 (defun add-to-custom-theme-load-path (path &optional dir)
   (setq custom-theme-load-path
         (cons (expand-file-name path (or dir user-theme-directory))
               custom-theme-load-path)))
 
-;; load-path
-(dolist (dir (nreverse (list user-lisp-directory
-                             elpa-package-directory
-                             user-theme-directory)))
-  (dolist (entry (nreverse (directory-files-and-attributes dir)))
-    (if (cadr entry)
-        (add-to-load-path (car entry) dir))))
-
-(mapc #'add-to-load-path
-      (nreverse (list user-emacs-directory)))
-
-(let ((cl-p load-path))
-  (while cl-p
-    (setcar cl-p (file-name-as-directory
-                  (expand-file-name (car cl-p))))
-    (setq cl-p (cdr cl-p))))
-
-(setq load-path (delete-dups load-path))
-
-
-;; custom-theme-load-path
 (setq custom-theme-load-path nil)
 (dolist (dir (list site-theme-directory user-theme-directory))
   (dolist (entry (nreverse (directory-files-and-attributes dir)))
     (if (cadr entry)
         (add-to-custom-theme-load-path (car entry) dir))))
 
-(require 'autoloads nil t)
-(require 'cus-load nil t)
 
-(provide 'load-path)
+;;;; External Packages
+(require 'package)
+(setq package-archives
+      (append package-archives
+              '(("melpa" . "http://melpa.milkbox.net/packages/"))
+              '(("org" . "http://orgmode.org/elpa/"))))
+
+;; Load the list of packages but don't initialize them.
+;; `use-package' will arrange the necessary autoload entries.
+(package-initialize nil)
+
+;; If never connected to repositories before, download package descriptions so
+;; `use-package' can trigger installation of missing packages.
+(unless package-archive-contents
+    (message "Refreshing ELPA package archives...")
+    (package-refresh-contents))
+
+;; ...but before everything, make sure `use-package' is installed.
+(unless (package-installed-p 'use-package)
+  (message "`use-package' not found.  Installing...")
+  (package-install 'use-package))
+
+(require 'use-package)
+(setq use-package-minimum-reported-time 0)
