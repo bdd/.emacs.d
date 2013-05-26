@@ -146,6 +146,7 @@
 (show-paren-mode)
 (global-auto-revert-mode)
 (setq tramp-persistency-file-name (emacs-d "var/tramp-history.el"))
+(hook-into-modes 'hl-line-mode '(prog-mode-hook))
 
 
 ;;;; Internal Packages
