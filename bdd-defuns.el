@@ -63,7 +63,7 @@ Also fix `backward-kill-word' so that it stops at whitespace.
 (bind-key "C-M-y" 'duplicate-line)
 
 
-;; from whatthemacsd.com
+;; from http://whattheemacsd.com/key-bindings.el-01.html
 (defun goto-line-with-feedback ()
   "Show line numbers temporarily, while prompting for the line number input"
   (interactive)
