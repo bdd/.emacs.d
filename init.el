@@ -133,16 +133,13 @@
 
 
 ;;;; Disabled commands
-(defun enable-commands (commands)
-  (dolist (cmd commands)
-    (put cmd 'disabled nil)))
-
-(enable-commands
- '(erase-buffer
-   upcase-region
-   downcase-region
-   dired-find-alternate-file
-   narrow-to-region))
+(dolist (cmd
+         '(erase-buffer
+           upcase-on
+           downcase-region
+           dired-find-alternate-file
+           narrow-to-region))
+  (put cmd 'disabled nil))
 
 
 ;;;; Misc
