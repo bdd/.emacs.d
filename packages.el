@@ -164,6 +164,8 @@
 (use-package org
   :ensure t
   :defer t
+  :init
+  (setq org-replace-disputed-keys t)
   :config
   (progn
     (org-babel-do-load-languages
