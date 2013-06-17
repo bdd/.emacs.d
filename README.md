@@ -21,7 +21,7 @@ a compiled version *(without the fullscreen patch)* from
 Almost all packages are sourced from [MELPA](http://melpa.milkbox.net/)
 repository.  At first launch they will be downloaded and installed.
 
-The only exception is the latest version of `org-mode'.  Emacs ships with
+The only exception is the latest version of `org-mode`.  Emacs ships with
 an older version of so you need to manually install from `list-packages' menu.
 
 
