@@ -71,6 +71,17 @@
   :ensure t
   :defer t)
 
+(use-package flx
+  :ensure t
+  :defer t
+  :init
+  (progn
+    (flx-ido-mode 1))
+  :config
+  (progn
+    (setq ido-use-faces nil)
+    (setq gc-cons-threshold 20000000)))
+
 (use-package gist
   :ensure t
   :bind ("C-c g p" . gist-region-or-buffer-private))
@@ -196,6 +207,11 @@
 (use-package scala-mode2
   :ensure t
   :defer t)
+
+(use-package smex
+  :ensure t
+  :defer t
+  :bind ("M-x" . smex))
 
 (use-package yaml-mode
   :ensure t
