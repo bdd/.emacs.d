@@ -107,7 +107,7 @@
 
 ;;;; Whitespace
 (setq-default indicate-empty-lines t) ; in the left fringe
-(setq require-final-newline 'ask)
+(setq require-final-newline t)
 (setq whitespace-style '(face trailing tabs tab-mark))
 (hook-into-modes 'whitespace-mode '(prog-mode-hook))
 
