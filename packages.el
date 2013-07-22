@@ -71,7 +71,7 @@
   :ensure t
   :defer t)
 
-(use-package flx
+(use-package flx-ido
   :ensure t
   :defer t
   :init
