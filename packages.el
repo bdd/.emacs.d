@@ -114,6 +114,12 @@
     (bind-key "C-c f" 'gofmt go-mode-map)
     (bind-key "C-c d" 'godoc go-mode-map)))
 
+(use-package goto-chg
+  :ensure t
+  :defer t
+  :bind (("C-." . goto-last-change)
+         ("C-," . goto-last-change-reverse)))
+
 (use-package google-c-style
   :ensure t
   :defer t)
