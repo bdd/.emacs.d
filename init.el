@@ -149,7 +149,7 @@
 ;;;; Disabled commands
 (dolist (cmd
          '(erase-buffer
-           upcase-on
+           upcase-region
            downcase-region
            dired-find-alternate-file
            narrow-to-region))
