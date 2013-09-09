@@ -69,7 +69,10 @@
 
 (use-package fill-column-indicator
   :ensure t
-  :defer t)
+  :defer t
+  :config
+  (progn
+    (hook-into-modes 'fci-mode '(prog-mode-hook))))
 
 (use-package flx-ido
   :ensure t

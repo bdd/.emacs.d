@@ -119,6 +119,12 @@
                     (local-set-key (kbd "RET") 'newline-and-indent))
                  '(prog-mode-hook))
 
+;; Line wrap at 100 char for all programming modes.
+;; An indicator line will be drawn by `fci-mode` defined in `packages.el`
+(hook-into-modes '(lambda ()
+                    (set-fill-column 100))
+                 '(prog-mode-hook))
+
 ;;;; Whitespace
 (setq-default indicate-empty-lines t) ; in the left fringe
 (setq require-final-newline t)
