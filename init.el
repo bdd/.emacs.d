@@ -176,12 +176,8 @@
 (when window-system
   (add-hook 'after-init-hook 'server-start t))
 
+(defun init-duration-message ()
+  (let ((elapsed (float-time (time-subtract (current-time) emacs-start-time))))
+    (message "Initialization complete. (%.3fs)\n%s" elapsed (make-string 80 ?\-))))
 
-(add-hook 'after-init-hook
-          `(lambda ()
-             (let ((elapsed (float-time (time-subtract (current-time)
-                                                       emacs-start-time))))
-               (message "Initialization complete. (%.3fs)\n%s"
-                        elapsed
-                        (make-string 80 ?\-))))
-          t)
+(add-hook 'after-init-hook 'init-duration-message 'append)
