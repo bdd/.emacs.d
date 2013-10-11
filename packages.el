@@ -185,7 +185,8 @@
   :ensure t
   :defer t
   :init
-  (setq org-replace-disputed-keys t)
+  (setq org-replace-disputed-keys t
+        org-default-notes-file (expand-file-name "notes.org" (getenv "HOME")))
   :config
   (progn
     (org-babel-do-load-languages
