@@ -70,7 +70,7 @@
 (use-package fill-column-indicator
   :ensure t
   :defer t
-  :config
+  :init
   (progn
     (hook-into-modes 'fci-mode '(prog-mode-hook))))
 
