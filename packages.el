@@ -190,7 +190,7 @@
 
 (use-package projectile
   :ensure t
-  :diminish (projectile-mode . " Pjtl")
+  :diminish projectile-mode
   :config
   (progn
     (setq projectile-ack-function 'ag-project-at-point
