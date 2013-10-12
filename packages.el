@@ -191,6 +191,14 @@
      (ruby . t)
      (sh . t))))
 
+(use-package projectile
+  :ensure t
+  :diminish (projectile-mode . " Pjtl")
+  :config
+  (progn
+    (setq projectile-ack-function '(ag-project default))
+    (projectile-global-mode)))
+
 (use-package protobuf-mode
   :ensure t
   :defer t)
