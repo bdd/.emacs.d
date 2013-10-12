@@ -205,7 +205,7 @@
   :diminish (projectile-mode . " Pjtl")
   :config
   (progn
-    (setq projectile-ack-function '(ag-project default)
+    (setq projectile-ack-function 'ag-project-at-point
           projectile-known-projects-file (emacs-d "var/projectile-bookmarks.eld"))
     (projectile-global-mode)))
 
