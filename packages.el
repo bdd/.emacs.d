@@ -142,6 +142,7 @@
   :config
   (progn
     (setenv "GIT_PAGER" "")
+    (setq magit-completing-read-function 'magit-ido-completing-read)
     (add-hook 'magit-log-edit-mode-hook
               '(lambda ()
                  (auto-fill-mode)
