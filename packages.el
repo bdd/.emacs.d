@@ -81,6 +81,12 @@
   (setq ido-use-faces nil
         gc-cons-threshold 20000000))
 
+(use-package flycheck
+  :ensure t
+  :defer t
+  :init
+  (hook-into-modes 'flycheck-mode '(prog-mode-hook)))
+
 (use-package gist
   :ensure t
   :bind ("C-c g p" . gist-region-or-buffer-private))
