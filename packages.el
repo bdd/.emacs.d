@@ -56,11 +56,7 @@
   :config
   (progn
     (bind-key "C-c C-k" 'edit-server-abort edit-server-edit-mode-map)
-    (add-hook 'edit-server-start-hook
-              '(lambda ()
-                 (auto-fill-mode)
-                 (flyspell-mode)
-                 (set-fill-column 80)))))
+    (add-hook 'edit-server-start-hook 'spell-check-and-wrap-at-80)))
 
 (use-package expand-region
   :ensure t
@@ -150,12 +146,7 @@
   :config
   (progn
     (setenv "GIT_PAGER" "")
-    (setq magit-completing-read-function 'magit-ido-completing-read)
-    (add-hook 'magit-log-edit-mode-hook
-              '(lambda ()
-                 (auto-fill-mode)
-                 (flyspell-mode)
-                 (set-fill-column 80)))))
+    (setq magit-completing-read-function 'magit-ido-completing-read)))
 
 (use-package markdown-mode
   :ensure t
@@ -166,10 +157,7 @@
       (when (executable-find preferred-markdown-impl)
         (setq markdown-command preferred-markdown-impl)))
 
-    (add-hook 'markdown-mode-hook
-              '(lambda ()
-                 (auto-fill-mode)
-                 (flyspell-mode)))))
+    (add-hook 'markdown-mode-hook 'spell-check-and-wrap-at-80)))
 
 (use-package multiple-cursors
   :ensure t

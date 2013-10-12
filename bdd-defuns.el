@@ -74,3 +74,10 @@ Also fix `backward-kill-word' so that it stops at whitespace.
     (linum-mode -1)))
 
 (global-set-key [remap goto-line] 'goto-line-with-feedback)
+
+
+(defun spell-check-and-wrap-at-80 ()
+  "Enable three minor modes for neat text"
+  (flyspell-mode)
+  (auto-fill-mode)
+  (set-fill-column 80))
