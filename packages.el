@@ -89,7 +89,9 @@
 
 (use-package gist
   :ensure t
-  :bind ("C-c g p" . gist-region-or-buffer-private))
+  :bind ("C-c g p" . gist-region-or-buffer-private)
+  :config
+  (setq gist-view-gist t))
 
 (use-package git-commit-mode
   :ensure t
