@@ -13,8 +13,8 @@
 ;; If never connected to repositories before, download package descriptions so
 ;; `use-package' can trigger installation of missing packages.
 (unless package-archive-contents
-    (message "Refreshing ELPA package archives...")
-    (package-refresh-contents))
+  (message "Refreshing ELPA package archives...")
+  (package-refresh-contents))
 
 ;; ...but before everything, make sure `use-package' is installed.
 (unless (package-installed-p 'use-package)
@@ -40,8 +40,7 @@
   :ensure t
   :defer t
   :config
-  (progn
-    (browse-kill-ring-default-keybindings)))
+  (browse-kill-ring-default-keybindings))
 
 (use-package color-theme-sanityinc-tomorrow
   :ensure t)
@@ -71,19 +70,16 @@
   :ensure t
   :defer t
   :init
-  (progn
-    (hook-into-modes 'fci-mode '(prog-mode-hook))))
+  (hook-into-modes 'fci-mode '(prog-mode-hook)))
 
 (use-package flx-ido
   :ensure t
   :defer t
   :init
-  (progn
-    (flx-ido-mode 1))
+  (flx-ido-mode 1)
   :config
-  (progn
-    (setq ido-use-faces nil)
-    (setq gc-cons-threshold 20000000)))
+  (setq ido-use-faces nil
+        gc-cons-threshold 20000000))
 
 (use-package gist
   :ensure t
@@ -105,11 +101,10 @@
   :ensure t
   :defer t
   :init
-  (progn
-    (defun go-capitalize-previous-word ()
-      (interactive)
-      (backward-word)
-      (capitalize-word 1)))
+  (defun go-capitalize-previous-word ()
+    (interactive)
+    (backward-word)
+    (capitalize-word 1))
 
   :config
   (progn
@@ -174,8 +169,7 @@
          ("C-<" . mc/mark-previous-like-this)
          ("C-c C-<" . mc/mark-all-like-this))
   :config
-  (progn
-    (setq mc/list-file (emacs-d "var/multiple-cursors-all-or-once.el"))))
+  (setq mc/list-file (emacs-d "var/multiple-cursors-all-or-once.el")))
 
 (use-package mustache-mode
   :ensure t
@@ -188,15 +182,14 @@
   (setq org-replace-disputed-keys t
         org-default-notes-file (expand-file-name "notes.org" (getenv "HOME")))
   :config
-  (progn
-    (org-babel-do-load-languages
-     'org-babel-load-languages
-     '((awk . t)
-       (emacs-lisp . t)
-       (java . t)
-       (python . t)
-       (ruby . t)
-       (sh . t)))))
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((awk . t)
+     (emacs-lisp . t)
+     (java . t)
+     (python . t)
+     (ruby . t)
+     (sh . t))))
 
 (use-package protobuf-mode
   :ensure t
