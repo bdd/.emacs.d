@@ -1,6 +1,13 @@
-;;; load-path.el
-;;; External Packages
+;;; packages.el --- External packages configured via `use-package'
+
+;;; Commentary:
+;; - Sort alphabetically.
+;; - Define common functions in `bdd-defuns.el'
+;; - Define package specific functions under :init or :config
+
 (require 'package)
+
+;;; Code:
 (setq package-archives
       (append package-archives
               '(("melpa" . "http://melpa.milkbox.net/packages/"))
@@ -241,3 +248,7 @@
   (progn
     (setq yas-verbosity 3)
     (yas-global-mode 1)))
+
+(provide 'packages)
+
+;;; packages.el ends here

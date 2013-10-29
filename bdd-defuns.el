@@ -1,19 +1,28 @@
+;;; bdd-defuns.el --- personal functions and key bindings
+
+;;; Commentary:
+;; Anything that's not third party package specific goes here.
+;;
+;; - Only use `bind-key' to assign functions to keys unless remapping.
+;; - If imported, add the source URL as a comment.
+
 (require 'bind-key)
+
+;;; Code:
 
 (defun kill-region-or-backward-kill-word (arg)
   "If mark is active kill the region else backward kill word.
 
 Traditionally Unix uses `C-w' for backward kill word.  Preserve Emacs default
 of kill-region if the mark is active, otherwise fallback to `backward-kill-word'.
-Also fix `backward-kill-word' so that it stops at whitespace.
-"
+Also fix `backward-kill-word' so that it stops at whitespace."
   (interactive "p")
 
   (defun backward-kill-word-without-spaces (arg)
     "Wrap backward-kill-word to swallow spaces separate from words."
 
     (if (looking-back "\\s-+") ; whitespace
-      (kill-region (point)
+        (kill-region (point)
                      (progn
                        (re-search-backward "\\S-") ; not whitespace
                        (forward-char 1)
@@ -29,6 +38,7 @@ Also fix `backward-kill-word' so that it stops at whitespace.
 
 (global-unset-key (kbd "C-x m")) ; Need this as a prefix. (was `compose-mail')
 
+
 (defun mark-line (&optional arg)
   (interactive "p")
   (or arg (setq arg 1))
@@ -37,6 +47,7 @@ Also fix `backward-kill-word' so that it stops at whitespace.
   (end-of-line arg))
 
 (bind-key "C-x m l" 'mark-line)
+
 
 (defun mark-sentence (&optional arg)
   (interactive "p")
@@ -65,19 +76,24 @@ Also fix `backward-kill-word' so that it stops at whitespace.
 
 ;; from http://whattheemacsd.com/key-bindings.el-01.html
 (defun goto-line-with-feedback ()
-  "Show line numbers temporarily, while prompting for the line number input"
+  "Show line numbers temporarily, while prompting for the line number input."
   (interactive)
   (unwind-protect
-    (progn
-      (linum-mode 1)
-      (goto-line (read-number "Goto line: ")))
+      (progn
+        (linum-mode 1)
+        (goto-line (read-number "Goto line: ")))
     (linum-mode -1)))
 
 (global-set-key [remap goto-line] 'goto-line-with-feedback)
 
 
+;; called from packages.el
 (defun spell-check-and-wrap-at-80 ()
-  "Enable three minor modes for neat text"
+  "Enable three minor modes for neat text."
   (flyspell-mode)
   (auto-fill-mode)
   (set-fill-column 80))
+
+(provide 'bdd-defuns)
+
+;;; bdd-defuns.el ends here

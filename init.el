@@ -1,5 +1,5 @@
-;;;; Emacs Configuration
-;;;; Berk D. Demir <bdd@mindcast.org>
+;;; init.el --- The Emacs Initialization File
+;; Berk D. Demir <bdd@mindcast.org>
 
 (defconst emacs-start-time (current-time))
 (setq message-log-max 16384)
@@ -67,16 +67,17 @@
 
 ;; Display completions vertically
 (setq ido-decorations (quote ("\n> " "" "\n  " "\n  ..." "[" "]"
-                         " [No Match]" " [Matched]" " [Not Readable]"
-                         " [Too Big]" " [Confirm]")))
+                              " [No Match]" " [Matched]" " [Not Readable]"
+                              " [Too Big]" " [Confirm]")))
 
 (defun ido-disable-line-truncation ()
- (set (make-local-variable 'truncate-lines) nil))
+  (set (make-local-variable 'truncate-lines) nil))
 (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-truncation)
 
-(defun ido-define-keys () ;; C-n/p is more intuitive in vertical layout
- (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
- (define-key ido-completion-map (kbd "C-p") 'ido-prev-match))
+(defun ido-define-keys ()
+  "C-(n|p) is more intuitive in vertical layout."
+  (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
+  (define-key ido-completion-map (kbd "C-p") 'ido-prev-match))
 (add-hook 'ido-setup-hook 'ido-define-keys)
 
 
@@ -134,6 +135,7 @@
 (setq initial-major-mode 'text-mode)
 ;; Never kill, just bury
 (defun dont-kill-but-bury-scratch ()
+  "Don't kill but burry *scratch* buffer."
   (if (equal (buffer-name (current-buffer)) "*scratch*")
       (progn (bury-buffer) nil)
     t))
@@ -175,7 +177,10 @@
   (add-hook 'after-init-hook 'server-start t))
 
 (defun init-duration-message ()
+  "Print time spent in initialization to *Messages*."
   (let ((elapsed (float-time (time-subtract (current-time) emacs-start-time))))
-    (message "Initialization complete. (%.3fs)\n%s" elapsed (make-string 80 ?\-))))
+    (message "Initialization complete.  (%.3fs)\n%s" elapsed (make-string 80 ?\-))))
 
 (add-hook 'after-init-hook 'init-duration-message 'append)
+
+;;; init.el ends here
