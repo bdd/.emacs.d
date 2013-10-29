@@ -217,6 +217,13 @@
   :ensure t
   :defer t)
 
+(use-package smartparens
+  :ensure t
+  :diminish smartparens-mode
+  :config
+  (progn
+    (smartparens-global-mode 1)))
+
 (use-package smex
   :ensure t
   :defer t

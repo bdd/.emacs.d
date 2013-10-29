@@ -112,9 +112,6 @@
 (setq-default indent-tabs-mode nil)   ; never use tabs to indent.
 
 
-;;;; Electric
-(electric-pair-mode)   ; paranthesis, braces, quotation marks.
-;(electric-indent-mode) ; on-the-fly reindentation.
 ;; Use auto indentation only in programming modes.
 (hook-into-modes '(lambda ()
                     (local-set-key (kbd "RET") 'newline-and-indent))
