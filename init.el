@@ -62,6 +62,7 @@
 (ido-everywhere 1)
 (setq ido-use-virtual-buffers t
       recentf-save-file (emacs-d "var/recentf")
+      save-place-file (emacs-d "var/saved-places")
       ido-save-directory-list-file (emacs-d "var/ido-last.el"))
 
 ;; Display completions vertically
