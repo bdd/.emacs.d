@@ -229,6 +229,7 @@
   :diminish smartparens-mode
   :config
   (progn
+    (require 'smartparens-config)
     (smartparens-global-mode 1)))
 
 (use-package smex
