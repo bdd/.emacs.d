@@ -80,8 +80,9 @@
   :init
   (flx-ido-mode 1)
   :config
-  (setq ido-use-faces nil
-        gc-cons-threshold 20000000))
+  (progn
+    (setq gc-cons-threshold (* 20 (expt 2 20)) ; megabytes
+          ido-use-faces nil)))
 
 (use-package flycheck
   :ensure t
