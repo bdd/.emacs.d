@@ -272,6 +272,9 @@
 (use-package smex
   :ensure t
   :defer t
+  :init
+  (progn
+    (setq smex-save-file (emacs-d "var/smex-items")))
   :bind ("M-x" . smex))
 
 (use-package toml-mode
