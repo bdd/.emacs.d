@@ -214,7 +214,7 @@
   :diminish projectile-mode
   :config
   (progn
-    (setq projectile-ack-function 'ag-project-at-point
+    (setq projectile-enable-caching t
           projectile-known-projects-file (emacs-d "var/projectile-bookmarks.eld"))
     (projectile-global-mode)))
 
