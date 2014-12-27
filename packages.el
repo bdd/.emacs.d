@@ -42,6 +42,10 @@
     (bind-key "N" 'compilation-next-file ag-mode-map)
     (bind-key "P" 'compilation-previous-file ag-mode-map)))
 
+(use-package aurora-config-mode
+  :ensure t
+  :defer t)
+
 (use-package browse-kill-ring
   :ensure t
   :defer t
