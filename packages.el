@@ -60,7 +60,10 @@
   :defer t)
 
 (use-package diminish
-  :ensure t)
+  :ensure t
+  :config
+  (progn
+    (eval-after-load "whitespace" '(diminish 'whitespace-mode))))
 
 (use-package edit-server
   :ensure t
@@ -151,6 +154,7 @@
 
 (use-package guide-key
   :ensure t
+  :diminish guide-key-mode
   :config
   (progn
     (setq guide-key/popup-window-position 'bottom
