@@ -98,6 +98,10 @@
   :init
   (hook-into-modes 'flycheck-mode '(prog-mode-hook)))
 
+(use-package flycheck-rust
+  :ensure t
+  :defer t)
+
 (use-package gist
   :ensure t
   :bind ("C-c g p" . gist-region-or-buffer-private)
@@ -242,6 +246,10 @@
   :ensure t
   :defer t)
 
+(use-package rust-mode
+  :ensure t
+  :defer t)
+
 (use-package scala-mode2
   :ensure t
   :defer t)
@@ -258,6 +266,10 @@
   :ensure t
   :defer t
   :bind ("M-x" . smex))
+
+(use-package toml-mode
+  :ensure t
+  :defer t)
 
 (use-package yaml-mode
   :ensure t
