@@ -133,6 +133,20 @@
   :bind (("C-." . goto-last-change)
          ("C-," . goto-last-change-reverse)))
 
+(use-package guide-key
+  :ensure t
+  :config
+  (progn
+    (setq guide-key/popup-window-position 'bottom
+          guide-key/guide-key-sequence t  ; enable for all prefixes
+          guide-key/recursive-key-sequence-flag t)
+
+    (defun guide-key/org-mode-hook ()
+      (guide-key/add-local-highlight-command-regexp "org-"))
+    (add-hook 'org-mode-hook 'guide-key/org-mode-hook)
+
+    (guide-key-mode 1)))
+
 (use-package ido-ubiquitous
   :ensure t
   :init
