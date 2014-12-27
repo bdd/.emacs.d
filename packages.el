@@ -238,6 +238,13 @@
   :ensure t
   :mode ("\\.pp$" . puppet-mode))
 
+(use-package rainbow-delimiters
+  :ensure t
+  :defer t
+  :config
+  (progn
+    (add-hook 'emacs-lisp-mode-hook #'rainbow-delimiters-mode)))
+
 (use-package regex-tool
   :ensure t
   :defer t)
