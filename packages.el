@@ -55,6 +55,10 @@
 (use-package color-theme-sanityinc-tomorrow
   :ensure t)
 
+(use-package dash-at-point
+  :ensure t
+  :defer t)
+
 (use-package diminish
   :ensure t)
 
