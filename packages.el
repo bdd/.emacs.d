@@ -28,7 +28,8 @@
   (package-install 'use-package))
 
 (require 'use-package)
-(setq use-package-minimum-reported-time 0)
+(setq use-package-minimum-reported-time 0
+      use-package-verbose t)
 
 
 (use-package ag
