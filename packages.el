@@ -148,7 +148,6 @@
 
 (use-package goto-chg
   :ensure t
-  :defer t
   :bind (("C-." . goto-last-change)
          ("C-," . goto-last-change-reverse)))
 
@@ -278,11 +277,10 @@
 
 (use-package smex
   :ensure t
-  :defer t
+  :bind ("M-x" . smex))
   :init
   (progn
     (setq smex-save-file (emacs-d "var/smex-items")))
-  :bind ("M-x" . smex))
 
 (use-package thrift
   :ensure t
