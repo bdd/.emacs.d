@@ -88,13 +88,12 @@
 
 (use-package flx-ido
   :ensure t
-  :defer t
   :init
-  (flx-ido-mode 1)
-  :config
   (progn
     (setq gc-cons-threshold (* 20 (expt 2 20)) ; megabytes
-          ido-use-faces nil)))
+          ido-use-faces nil))
+  :config
+  (flx-ido-mode 1))
 
 (use-package flycheck
   :ensure t
@@ -136,7 +135,6 @@
     (interactive)
     (backward-word)
     (capitalize-word 1))
-
   :config
   (progn
     (bind-key "C-c C-c" 'go-capitalize-previous-word go-mode-map)
@@ -192,13 +190,13 @@
 (use-package markdown-mode
   :ensure t
   :mode ("\\.\\(m\\(ark\\)?down\\|md\\)$" . markdown-mode)
+  :init
+  (add-hook 'markdown-mode-hook 'spell-check-and-wrap-at-80)
   :config
   (progn
     (let ((preferred-markdown-impl "peg-markdown"))
       (when (executable-find preferred-markdown-impl)
-        (setq markdown-command preferred-markdown-impl)))
-
-    (add-hook 'markdown-mode-hook 'spell-check-and-wrap-at-80)))
+        (setq markdown-command preferred-markdown-impl)))))
 
 (use-package multiple-cursors
   :ensure t
@@ -248,7 +246,7 @@
 (use-package rainbow-delimiters
   :ensure t
   :defer t
-  :config
+  :init
   (progn
     (add-hook 'emacs-lisp-mode-hook #'rainbow-delimiters-mode)))
 
