@@ -76,6 +76,14 @@
     (bind-key "C-c C-k" 'edit-server-abort edit-server-edit-mode-map)
     (add-hook 'edit-server-start-hook 'spell-check-and-wrap-at-80)))
 
+(use-package exec-path-from-shell
+  :ensure t
+  :if window-system
+  :config
+  (progn
+    (exec-path-from-shell-initialize)
+    (message "%s: %s" "exec-path-from-shell post config" (getenv "PATH"))))
+
 (use-package expand-region
   :ensure t
   :bind ("C-=" . er/expand-region))
@@ -140,6 +148,9 @@
     (bind-key "C-c C-c" 'go-capitalize-previous-word go-mode-map)
     (bind-key "C-c f" 'gofmt go-mode-map)
     (bind-key "C-c d" 'godoc go-mode-map)))
+
+(use-package go-projectile
+  :ensure t)
 
 (use-package google-c-style
   :ensure t
