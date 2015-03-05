@@ -240,11 +240,12 @@
 (use-package projectile
   :ensure t
   :diminish projectile-mode
+  :init
+  (setq projectile-enable-caching t
+        projectile-cache-file (emacs-d "var/projectile.cache")
+        projectile-known-projects-file (emacs-d "var/projectile-bookmarks.eld"))
   :config
-  (progn
-    (setq projectile-enable-caching t
-          projectile-known-projects-file (emacs-d "var/projectile-bookmarks.eld"))
-    (projectile-global-mode)))
+  (projectile-global-mode))
 
 (use-package protobuf-mode
   :ensure t
