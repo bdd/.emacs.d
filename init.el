@@ -45,7 +45,7 @@
     (progn
       (tool-bar-mode 0)
       (scroll-bar-mode 0)
-      ;; 4px left, and no right right fringe
+      ;; 4px left, and no right fringe
       (set-fringe-style '(4 . 0)))
   ;; No menu bar when running from a terminal.
   (menu-bar-mode 0))
@@ -142,9 +142,10 @@
 (add-hook 'kill-buffer-query-functions 'dont-kill-but-bury-scratch)
 
 ;;;; Annoyances
-(setq inhibit-splash-screen t)
-(fset 'yes-or-no-p 'y-or-n-p) ; brevity
-(setq ring-bell-function 'ignore) ; hush...
+(setq inhibit-splash-screen t
+      ring-bell-function 'ignore)
+(fset 'yes-or-no-p 'y-or-n-p)
+
 ;;; Disable commonly unintended key presses.
 (global-unset-key (kbd "C-z")) ; suspend-frame
 (global-unset-key (kbd "s-p")) ; ns-print-buffer
