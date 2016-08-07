@@ -1,32 +1,32 @@
-# bdd's ~/.emacs.d #
+bdd's ~/.emacs.d
+================
 
 Berk D. Demir's Emacs configuration and a few custom Elisp functions.
 
 
-## Version ##
+Version
+-------
 
-Target version is Emacs 24.4.1 running on Mac OS X (10.10).
+Target version is Emacs 24.5.1 running on Mac OS X El Capitan (10.11).
 
-Compiled from [Homebrew](http://brew.sh)
+Installed with [Homebrew](http://brew.sh) [Cask](https://caskroom.github.io)
 
-     brew install emacs --cocoa
+    brew cask install emacs
 
-If you don't use Homebrew, you can download an alternate binary distribution
-from [Emacs for Mac OS X](http://www.emacsformacosx.com).
+If you don't use Homebrew, you can download the binary distribution from
+[Emacs for Mac OS X](http://www.emacsformacosx.com).
 
 
-## Installation ##
+Installation
+------------
 
 Almost all packages are sourced from [MELPA](http://melpa.milkbox.net/)
 repository.  At first launch they will be downloaded and installed.
 
-The only exception is the latest version of `org-mode`.  Emacs ships with an
-older version. You will need to manually upgrade it to the latest version with
-`M-x package-install <RET> org <RET>`.
 
+Staying up-to-date
+------------------
 
-## Staying up-to-date ##
-
-`M-x list-packages <RET> U <RET> x <RET>`
+    M-x list-packages <RET> U <RET> x <RET>
 
 `U` marks the updated packages for installation and `x` to executes the batch.
