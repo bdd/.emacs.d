@@ -119,14 +119,6 @@
   :config
   (setq gist-view-gist t))
 
-(use-package git-commit-mode
-  :ensure t
-  :defer t)
-
-(use-package git-rebase-mode
-  :ensure t
-  :defer t)
-
 (use-package gitconfig-mode
   :ensure t
   :defer t)
