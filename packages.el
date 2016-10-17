@@ -34,13 +34,13 @@
 (use-package ag
   :ensure t
   :defer t
+  :bind (:map ag-mode-map
+              ("p" . compilation-previous-error)
+              ("n" . compilation-next-error)
+              ("N" . compilation-next-file)
+              ("P" . compilation-previous-file))
   :config
-  (progn
-    (setq ag-highlight-search t)
-    (bind-key "n" 'compilation-next-error ag-mode-map)
-    (bind-key "p" 'compilation-previous-error ag-mode-map)
-    (bind-key "N" 'compilation-next-file ag-mode-map)
-    (bind-key "P" 'compilation-previous-file ag-mode-map)))
+  (setq ag-highlight-search t))
 
 (use-package aurora-config-mode
   :ensure t
