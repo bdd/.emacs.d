@@ -224,7 +224,6 @@
 
 (use-package yasnippet
   :ensure t
-  :disabled t
   :diminish yas-minor-mode
   :mode ("/\\.emacs\\.d/snippets/" . snippet-mode)
   :init
