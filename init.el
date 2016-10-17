@@ -51,6 +51,17 @@
   (menu-bar-mode 0))
 
 
+;;;; Mouse
+(unless window-system
+  (progn
+    (require 'mwheel)
+    (require 'mouse)
+    (xterm-mouse-mode t)
+    (mouse-wheel-mode t)
+    (global-set-key [mouse-5] 'next-line)
+    (global-set-key [mouse-4] 'previous-line)))
+
+
 ;;;; Mode Line
 (setq size-indication-mode t
       line-number-mode t
@@ -95,15 +106,16 @@
 
 ;;;; Global Key Bindings
 (require 'bind-key)
-(bind-key "C-h" 'delete-backward-char) ; unixism
-(bind-key "C-?" 'help-command) ; C-h is gone and <f1> is not really convenient
-(bind-key "C-S-k" 'kill-whole-line)
+(bind-key "C-h" 'delete-backward-char) ; unixism. use <f1> for help
+(bind-key "C-c C-k" 'kill-whole-line)
 (bind-key "C-j" '(lambda () (interactive) (join-line -1))) ; more useful C-j
 (bind-key "C-x C-b" 'ibuffer)
 (bind-key "C-x C-d" 'dired)
 
+(bind-key "C-x k" 'kill-this-buffer) ; instead of `kill-buffer' -- or <s-k>
+(bind-key "C-x !" 'revert-buffer) ; -- or <s-u>
+
 ;;; Window Movement
-(bind-key "C-<return>" 'other-window)
 (windmove-default-keybindings) ; default modifier key is 'shift.
 (winner-mode) ; C-c <left> to restore last window layout
 

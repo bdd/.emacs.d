@@ -71,7 +71,7 @@
 
 (use-package expand-region
   :ensure t
-  :bind ("C-=" . er/expand-region))
+  :bind ("C-@" . er/expand-region))
 
 (use-package fill-column-indicator
   :ensure t
@@ -96,7 +96,7 @@
 
 (use-package gist
   :ensure t
-  :bind ("C-c g p" . gist-region-or-buffer-private)
+  :bind ("C-c G p" . gist-region-or-buffer-private)
   :config
   (setq gist-view-gist t))
 
@@ -114,8 +114,8 @@
 
 (use-package goto-chg
   :ensure t
-  :bind (("C-." . goto-last-change)
-         ("C-," . goto-last-change-reverse)))
+  :bind (("C-c ." . goto-last-change)
+         ("C-c ," . goto-last-change-reverse)))
 
 (use-package guide-key
   :ensure t
@@ -144,7 +144,7 @@
 
 (use-package magit
   :ensure t
-  :bind ("C-x g" . magit-status)
+  :bind ("C-c g g" . magit-status)
   :config
   (progn
     (setenv "GIT_PAGER" "")
@@ -163,10 +163,10 @@
 
 (use-package multiple-cursors
   :ensure t
-  :bind (("C-S-c C-S-c" . mc/edit-lines)
-         ("C->" . mc/mark-next-like-this)
-         ("C-<" . mc/mark-previous-like-this)
-         ("C-c C-<" . mc/mark-all-like-this))
+  :bind (("C-c C-c >" . mc/edit-lines)
+         ("C-c C-c <" . mc/mark-all-like-this)
+         ("C-c >" . mc/mark-next-like-this)
+         ("C-c <" . mc/mark-previous-like-this))
   :config
   (setq mc/list-file (emacs-d "var/multiple-cursors-all-or-once.el")))
 
