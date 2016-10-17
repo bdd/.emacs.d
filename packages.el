@@ -52,6 +52,27 @@
   :config
   (browse-kill-ring-default-keybindings))
 
+(use-package company
+  :ensure t
+  :pin melpa
+  :init
+  (add-hook 'after-init-hook 'global-company-mode))
+
+(use-package company-c-headers
+  :ensure t
+  :init
+  (add-to-list 'company-backends 'company-c-headers))
+
+(use-package company-flx
+  :ensure t
+  :init
+  (with-eval-after-load 'company (company-flx-mode +1)))
+
+(use-package company-shell
+  :ensure t
+  :init
+  (add-to-list 'company-backends 'company-shell))
+
 (use-package color-theme-sanityinc-tomorrow
   :ensure t)
 
