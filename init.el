@@ -13,12 +13,12 @@
   `(dolist (hook ,mode-hooks)
      (add-hook hook ,function)))
 
+;;; Facebook
+(load (emacs-d "facebook") 'missing-ok)
 ;;; External Packages
 (load (emacs-d "packages"))
 ;;; Personal Elisp functions
 (load (emacs-d "bdd-defuns"))
-;;; Twitter
-(load (emacs-d "twitter") 'missing-ok)
 ;;; Theme
 (load-theme 'sanityinc-tomorrow-eighties t)
 
