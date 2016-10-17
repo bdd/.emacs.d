@@ -46,12 +46,6 @@
   :ensure t
   :defer t)
 
-(use-package browse-kill-ring
-  :ensure t
-  :defer t
-  :config
-  (browse-kill-ring-default-keybindings))
-
 (use-package company
   :ensure t
   :pin melpa
