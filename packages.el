@@ -115,6 +115,9 @@
   :init
   (hook-into-modes 'flycheck-mode '(prog-mode-hook)))
 
+(use-package fzf
+  :ensure t)
+
 (use-package gist
   :ensure t
   :bind ("C-c G p" . gist-region-or-buffer-private)
