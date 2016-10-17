@@ -194,9 +194,7 @@
   :init
   (setq projectile-enable-caching t
         projectile-cache-file (emacs-d "var/projectile.cache")
-        projectile-known-projects-file (emacs-d "var/projectile-bookmarks.eld"))
-  :config
-  (projectile-global-mode))
+        projectile-known-projects-file (emacs-d "var/projectile-bookmarks.eld")))
 
 (use-package rainbow-delimiters
   :ensure t
