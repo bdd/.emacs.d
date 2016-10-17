@@ -76,7 +76,7 @@
       save-place-file (emacs-d "var/saved-places")
       ido-save-directory-list-file (emacs-d "var/ido-last.el"))
 
-;; Display completions vertically
+;;; Display completions vertically
 (setq ido-decorations (quote ("\n> " "" "\n  " "\n  ..." "[" "]"
                               " [No Match]" " [Matched]" " [Not Readable]"
                               " [Too Big]" " [Confirm]")))
@@ -144,13 +144,12 @@
 ;;;; *scratch* buffer
 (setq initial-scratch-message nil)
 (setq initial-major-mode 'text-mode)
-;; Never kill, just bury
+(add-hook 'kill-buffer-query-functions 'dont-kill-but-bury-scratch)
 (defun dont-kill-but-bury-scratch ()
   "Don't kill but burry *scratch* buffer."
   (if (equal (buffer-name (current-buffer)) "*scratch*")
       (progn (bury-buffer) nil)
     t))
-(add-hook 'kill-buffer-query-functions 'dont-kill-but-bury-scratch)
 
 ;;;; Annoyances
 (setq inhibit-splash-screen t
@@ -158,10 +157,10 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;;; Disable commonly unintended key presses.
-(global-unset-key (kbd "C-z")) ; suspend-frame
-(global-unset-key (kbd "s-p")) ; ns-print-buffer
-(global-unset-key (kbd "s-q")) ; save-buffers-kill-emacs
-(global-unset-key (kbd "s-t")) ; ns-popup-font-panel
+(global-unset-key (kbd "C-z")) ; was `suspend-frame'.
+(global-unset-key (kbd "s-p")) ; was `ns-print-buffer'
+(global-unset-key (kbd "s-q")) ; was `save-buffers-kill-emacs'
+(global-unset-key (kbd "s-t")) ; was `ns-popup-font-panel'
 
 
 ;;;; Disabled commands
@@ -178,6 +177,7 @@
 (show-paren-mode)
 (global-auto-revert-mode)
 (setq tramp-persistency-file-name (emacs-d "var/tramp-history.el"))
+(eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
 (hook-into-modes 'hl-line-mode '(prog-mode-hook
                                  package-menu-mode-hook))
 
