@@ -68,7 +68,9 @@
   (add-to-list 'company-backends 'company-shell))
 
 (use-package color-theme-sanityinc-tomorrow
-  :ensure t)
+  :ensure t
+  :config
+  (load-theme 'sanityinc-tomorrow-eighties t))
 
 (use-package diminish
   :ensure t

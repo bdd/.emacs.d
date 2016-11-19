@@ -19,9 +19,6 @@
 (load (emacs-d "packages"))
 ;;; Personal Elisp functions
 (load (emacs-d "bdd-defuns"))
-;;; Theme
-(load-theme 'sanityinc-tomorrow-eighties t)
-
 
 ;;;; Environment
 (setq shell-file-name "zsh")
