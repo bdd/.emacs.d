@@ -43,7 +43,7 @@
       (tool-bar-mode 0)
       (scroll-bar-mode 0)
       ;; 4px left, and no right fringe
-      (set-fringe-style '(4 . 0)))
+      (set-fringe-style '(10 . 10)))
   ;; No menu bar when running from a terminal.
   (menu-bar-mode 0))
 
