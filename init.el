@@ -31,41 +31,33 @@
               (cons 'file (emacs-d "packages.el")))
 
 ;;; no backup files, no auto-saving
-;;;--- TODO: Consolidate save files to a common directory.
+;; TODO: Consolidate save files to a common directory.
 (setq make-backup-files nil)
 (setq auto-save-default nil
       auto-save-list-file-prefix nil)
 
 
-;;;; UI
-(if window-system
-    (progn
-      (tool-bar-mode 0)
-      (scroll-bar-mode 0)
-      ;; 4px left, and no right fringe
-      (set-fringe-style '(10 . 10)))
-  ;; No menu bar when running from a terminal.
-  (menu-bar-mode 0))
+;;; UI
+(menu-bar-mode 0)
+(when window-system
+  (set-fringe-style '(10 . 10)) ; 10px left, 10px right
+  (tool-bar-mode 0)
+  (scroll-bar-mode 0))
 
-
-;;;; Mouse
+;;; Mouse
 (unless window-system
-  (progn
-    (require 'mwheel)
-    (require 'mouse)
-    (xterm-mouse-mode t)
-    (mouse-wheel-mode t)
-    (global-set-key [mouse-5] 'next-line)
-    (global-set-key [mouse-4] 'previous-line)))
+  (require 'mouse)
+  (require 'mwheel)
+  (xterm-mouse-mode)
+  (mouse-wheel-mode t))
 
-
-;;;; Mode Line
+;;; Mode Line
 (setq size-indication-mode t
       line-number-mode t
       column-number-mode t)
 
 
-;;;; Ido
+;;; Ido
 (ido-mode 1)
 (ido-everywhere 1)
 (setq ido-use-virtual-buffers t
@@ -73,12 +65,13 @@
       save-place-file (emacs-d "var/saved-places")
       ido-save-directory-list-file (emacs-d "var/ido-last.el"))
 
-;;; Display completions vertically
+;; Display completions vertically
 (setq ido-decorations (quote ("\n> " "" "\n  " "\n  ..." "[" "]"
                               " [No Match]" " [Matched]" " [Not Readable]"
                               " [Too Big]" " [Confirm]")))
 
 (defun ido-disable-line-truncation ()
+  "Do not truncate lines in ido mode."
   (set (make-local-variable 'truncate-lines) nil))
 (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-truncation)
 
@@ -96,12 +89,12 @@
         delete-by-moving-to-trash t
         trash-directory (expand-file-name ".Trash" (getenv "HOME"))))
 
-;;;; Mouse
+;;; Mouse
 (when (boundp 'mouse-wheel-scroll-amount)
   (setq mouse-wheel-scroll-amount '(0.01)))
 
 
-;;;; Global Key Bindings
+;;; Global Key Bindings
 (require 'bind-key)
 (bind-key "C-h" 'delete-backward-char) ; unixism. use <f1> for help
 (bind-key "C-c C-k" 'kill-whole-line)
@@ -132,13 +125,13 @@
                     (set-fill-column 100))
                  '(prog-mode-hook))
 
-;;;; Whitespace
+;;; Whitespace
 (setq-default indicate-empty-lines t) ; in the left fringe
 (setq require-final-newline t)
 (setq whitespace-style '(face trailing))
 (hook-into-modes 'whitespace-mode '(prog-mode-hook))
 
-;;;; *scratch* buffer
+;;; *scratch* buffer
 (setq initial-scratch-message nil)
 (setq initial-major-mode 'text-mode)
 (add-hook 'kill-buffer-query-functions 'dont-kill-but-bury-scratch)
@@ -148,7 +141,7 @@
       (progn (bury-buffer) nil)
     t))
 
-;;;; Annoyances
+;;; Annoyances
 (setq inhibit-splash-screen t
       ring-bell-function 'ignore)
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -160,7 +153,7 @@
 (global-unset-key (kbd "s-t")) ; was `ns-popup-font-panel'
 
 
-;;;; Disabled commands
+;;; Disabled commands
 (dolist (cmd
          '(erase-buffer
            upcase-region
@@ -170,7 +163,7 @@
   (put cmd 'disabled nil))
 
 
-;;;; Misc
+;;; Misc
 (show-paren-mode)
 (global-auto-revert-mode)
 (setq tramp-persistency-file-name (emacs-d "var/tramp-history.el"))
@@ -179,7 +172,7 @@
                                  package-menu-mode-hook))
 
 
-;;;; Internal Packages
+;;; Internal Packages
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
