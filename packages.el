@@ -42,10 +42,6 @@
   :config
   (setq ag-highlight-search t))
 
-(use-package aurora-config-mode
-  :ensure t
-  :defer t)
-
 (use-package company
   :ensure t
   :pin melpa
