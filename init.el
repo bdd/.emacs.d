@@ -186,4 +186,15 @@
 
 (add-hook 'after-init-hook 'init-duration-message 'append)
 
+;;; This non-sense below is to stop Emacs 25 modifying `init.el'
+;;
+;; We initialize packages in `packages.el' but Emacs developers decided to impose their opinions.
+;; Keeping it in here, _even commented out_, stops automatic prepending nonsense.
+;(package-initialize)
+;;
+;; More packages enforcement.  `package-selected-packages' custom variable is set automatically.
+;; To prevent appending to `init.el' we define a `custom-file' and load it to keep Emacs 25 happy.
+(setq custom-file (emacs-d "var/custom-file.el"))
+(load custom-file 'missing-ok)
+
 ;;; init.el ends here
