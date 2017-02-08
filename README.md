@@ -1,15 +1,12 @@
-bdd's ~/.emacs.d
-================
-
-Berk D. Demir's Emacs configuration and a few custom Elisp functions.
-
+[bdd]'s ~/.emacs.d
+==================
 
 Version
 -------
+Target version is Emacs 25.1 running on macOS and Linux.
 
-Target version is Emacs 25.1 running on macOS Sierra (10.12)
-
-Installed with [Homebrew](http://brew.sh) [Cask](https://caskroom.github.io)
+### macOS
+Install with [Homebrew] [Cask]
 
     brew cask install emacs
 
@@ -19,14 +16,19 @@ If you don't use Homebrew, you can download the binary distribution from
 
 Installation
 ------------
-
 Almost all packages are sourced from [MELPA](http://melpa.milkbox.net/)
 repository.  At first launch they will be downloaded and installed.
 
 
 Staying up-to-date
 ------------------
-
-    M-x list-packages <RET> U <RET> x <RET>
+```
+M-x list-packages <RET> U <RET> x <RET>
+```
 
 `U` marks the updated packages for installation and `x` to executes the batch.
+
+
+[bdd]: https://bdd.fi
+[Homebrew]: https://brew.sh
+[Cask]: https://caskroom.github.io
