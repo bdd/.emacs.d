@@ -1,4 +1,0 @@
-# -*- mode: snippet -*-
-# name: utcnow
-# --
-`(insert (format-time-string "%Y-%m-%dT%H:%MZ"))`
